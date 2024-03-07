@@ -17,21 +17,33 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: auto;
   height: auto;
 }
 .item-container {
-  margin-top: 2rem;
-  min-width: 60rem;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
+
 .item {
-  height: auto;
-  width: auto;
+  width: fit-content;
+  /* min-height: 13rem; */
   color: white;
+  background-color: hsl(209, 23%, 22%);
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.country-flag {
+  width: 10rem;
+  height: 7rem;
+  display: flex;
+}
+.country-title {
+  padding-left: 1rem;
+  font-size: 22px;
+}
+.country-population,
+.country-capital {
+  padding-left: 1rem;
 }
