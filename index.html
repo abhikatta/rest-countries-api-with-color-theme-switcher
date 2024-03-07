@@ -2,11 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task2</title>
   </head>
   <body>
-    <div id="main"></div>
+    <nav>
+      <input
+        type="search"
+        class="input-search"
+        id="search"
+        placeholder="Search for a country..." />
+      <select id="filter">
+        <option hidden>Filter</option>
+        <option>Asia</option>
+        <option>Africa</option>
+        <option>Europe</option>
+        <option>America</option>
+        <option>Oceania</option>
+      </select>
+    </nav>
+    <div class="main" id="main">
+      <div id="item-container" class="item-container">
+        <div class="item" id="item"></div>
+        <div class="item" id="item"></div>
+        <div class="item" id="item"></div>
+        <div class="item" id="item"></div>
+      </div>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>

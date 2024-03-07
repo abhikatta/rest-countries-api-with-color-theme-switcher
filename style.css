@@ -1,0 +1,37 @@
+* {
+  font-family: "Nunito Sans";
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: hsl(207, 26%, 17%);
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+  /* margin: 1rem 2rem 0rem; */
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: auto;
+  height: auto;
+}
+.item-container {
+  margin-top: 2rem;
+  min-width: 60rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.item {
+  height: auto;
+  width: auto;
+  color: white;
+}
