@@ -37,38 +37,45 @@ const renderCountryDetails = () => {
     let itemDiv = document.createElement("div");
     itemDiv.className = "item";
     itemDiv.id = "item";
-
+    // flag
     let flag = document.createElement("img");
     flag.src = v.flags.png;
     flag.alt = v.flags.alt;
-
+    // title
     let title = document.createElement("p");
     title.className = "country-title";
     let titleText = document.createTextNode(v.name);
     title.appendChild(titleText);
-
+    // population
     let population = document.createElement("p");
     population.className = "country-population";
-    let populationText = document.createTextNode(v.population);
+    let populationText = document.createTextNode(
+      `Population: ${v.population || "Unknown"}`
+    );
     population.appendChild(populationText);
+    // region
+    let region = document.createElement("p");
+    region.className = "country-region";
+    let regionText = document.createTextNode(
+      `Region: ${v.region || "Unknown"}`
+    );
+    region.appendChild(regionText);
+
+    // capital
 
     let capital = document.createElement("p");
     capital.className = "country-capital";
-    let capitalText = document.createTextNode(v.capital);
+    let capitalText = document.createTextNode(
+      `Capital: ${v.capital || "Unknown"}`
+    );
     capital.appendChild(capitalText);
 
-    itemDiv.append(flag, title, population, capital);
+    itemDiv.append(flag, title, population, region, capital);
     return itemDiv;
-
-    // itemContainerElement.innerHTML += ` <div class='item' key=${i} id='item'>
-    //                                       <img  src=${v.flags.png} alt=${v.flags.alt}/>
-    //                                       <p class='country-title'>${v.name}</p>
-    //                                       <p class='country-population'>Population: ${v.population}</p>
-    //                                       <p class='country-capital'>Capital: ${v.capital}</p>
-    //                                     </div>`;
   });
   countryComponents.map((v) => itemContainerElement.append(v));
 };
+
 // event listeners:
 window.addEventListener("load", renderCountryDetails);
 
