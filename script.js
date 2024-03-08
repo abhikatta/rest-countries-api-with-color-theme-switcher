@@ -91,7 +91,7 @@ const showItem = (v) => {
     ? v.topLevelDomain.map((v, i) => {
         topLevelDomainString += v + ", ";
       })
-    : (topLevelDomainString = "Unkwown");
+    : (topLevelDomainString = "Unknown");
   detailedTopLevelDomain.className = "country-topleveldomain-detailed";
   let detailedTopLevelDomainText = document.createTextNode(
     `Top Level Domain: ${topLevelDomainString}`
