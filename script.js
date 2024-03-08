@@ -17,7 +17,7 @@ let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
 let mapCountries = countriesData;
 
 const showItem = (v) => {
-  console.log("item clicked", v);
+  // console.log("item clicked", v);
   // create a new detailed div component with:
   // back button -top left
   // flag big - left center
@@ -32,11 +32,13 @@ const showItem = (v) => {
   // Border countries (each in button/box)
   let detailedDiv = document.createElement("div");
   detailedDiv.className = "item-detailed";
+
   // flag
   let detailedFlag = document.createElement("img");
   detailedFlag.className = "flag-detailed";
   detailedFlag.src = v.flags.png;
   detailedFlag.alt = v.flags.alt;
+
   // title
   let detailedTitle = document.createElement("p");
   detailedTitle.className = "country-title-detailed";
@@ -65,6 +67,7 @@ const showItem = (v) => {
   let detailedCapitalText = document.createTextNode(
     `Capital: ${v.capital || "Unknown"}`
   );
+
   // sub region
   let detailedSubRegion = document.createElement("p");
   detailedSubRegion.className = "country-subregion-detailed";
@@ -80,6 +83,7 @@ const showItem = (v) => {
     `Native Name: ${v.nativeName || "Unknown"}`
   );
   detailedNativeName.appendChild(detailedNativeNameText);
+
   // top level domain
   let detailedTopLevelDomain = document.createElement("p");
   let topLevelDomainString = "";
@@ -92,6 +96,7 @@ const showItem = (v) => {
     `Top Level Domain: ${topLevelDomainString}`
   );
   detailedTopLevelDomain.appendChild(detailedTopLevelDomainText);
+
   // currencies
   let detailedCurrencies = document.createElement("p");
   let currenciesString = "";
@@ -104,7 +109,8 @@ const showItem = (v) => {
     `Currencies: ${currenciesString}`
   );
   detailedCurrencies.appendChild(detailedCurrenciesText);
-  // currencies
+
+  // languages
   let detailedLanguages = document.createElement("p");
   let languagesString = "";
   v.languages.map((v, i) => {
@@ -114,9 +120,10 @@ const showItem = (v) => {
   let detailedLanguagesText = document.createTextNode(
     `Languages: ${languagesString}`
   );
+
   // back button
   let backButton = document.createElement("button");
-  let backButtonText = document.createTextNode("<-Back");
+  let backButtonText = document.createTextNode("Back");
   backButton.appendChild(backButtonText);
   backButton.addEventListener("click", () => {
     renderCountryDetails();
@@ -144,7 +151,7 @@ const showItem = (v) => {
 };
 
 const fetchData = () => {
-  console.log("function fetchData ran");
+  // console.log("function fetchData ran");
   fetch(LOCAL_JSON_DATA_FILE)
     .then((response) => response.json())
     .then((data) => {
@@ -155,12 +162,16 @@ const fetchData = () => {
         );
         countriesData = data;
       } else {
-        console.log("fetched data from localStorage");
+        // console.log("fetched data from localStorage");
       }
     })
     .catch((error) => {
-      body.innerHTML += "<h1>Something Went Wrong</h1>";
-      console.log(error);
+      let errorElement = document.createElement("h1");
+      errorElement.appendChild(
+        document.createTextNode(`Something Went Wrong:\n${error.message}`)
+      );
+      body.append(errorElement);
+      // console.log(error);
     });
 };
 const renderCountryDetails = () => {
@@ -223,9 +234,9 @@ const renderCountryDetails = () => {
 window.addEventListener("load", renderCountryDetails);
 
 darkModeButton.addEventListener("click", () => {
-  console.log("dark mode button pressed");
+  // console.log("dark mode button pressed");
 });
 const search = () => {
   const searchValue = searchElement.value;
-  console.log(searchValue);
+  // console.log(searchValue);
 };

@@ -7,8 +7,10 @@ body {
   background-color: hsl(0, 0%, 98%);
 }
 nav {
-  top: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: flex;
+  background-color: #fff;
   flex-direction: row;
   height: 2rem;
   justify-content: space-between;
