@@ -16,8 +16,68 @@ const LOCAL_JSON_DATA_FILE = "./data.json";
 let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
 let mapCountries = countriesData;
 
-const showItem = ({ v }) => {
-  console.log("item clicked");
+const showItem = (v) => {
+  console.log("item clicked", v);
+  // create a new detailed div component with:
+  // back button -top left
+  // flag big - left center
+  // countryname - right big
+  // 2cols x nrows grid :
+  // native name    top level domain
+  // population     currencies
+  // region         languages
+  // sub region
+  // capital
+  // bottom of grid:
+  // Border countries (each in button/box)
+  let detailedDiv = document.createElement("div");
+  detailedDiv.className = "item-detailed";
+  // flag
+  let detailedFlag = document.createElement("img");
+  detailedFlag.className = "flag-detailed";
+  detailedFlag.src = v.flags.png;
+  detailedFlag.alt = v.flags.alt;
+  // title
+  let detailedTitle = document.createElement("p");
+  detailedTitle.className = "country-title-detailed";
+  let detailedTitleText = document.createTextNode(v.name);
+  detailedTitle.appendChild(detailedTitleText);
+  //
+  //
+  // population
+  let detailedPopulation = document.createElement("p");
+  detailedPopulation.className = "country-population-detailed";
+  let detailedPopulationText = document.createTextNode(
+    `Population: ${v.population || "Unknown"}`
+  );
+  detailedPopulation.appendChild(detailedPopulationText);
+
+  // region
+  let detailedRegion = document.createElement("p");
+  detailedRegion.className = "country-region-detailed";
+  let detailedRegionText = document.createTextNode(
+    `Region: ${v.region || "Unknown"}`
+  );
+  detailedRegion.appendChild(detailedRegionText);
+
+  // capital
+  let detailedCapital = document.createElement("p");
+  detailedCapital.className = "country-capital-detailed";
+  let detailedCapitalText = document.createTextNode(
+    `Capital: ${v.capital || "Unknown"}`
+  );
+  // appendall to main div
+  detailedDiv.append(
+    detailedFlag,
+    detailedCapital,
+    detailedPopulation,
+    detailedRegion,
+    detailedTitle
+  );
+  // append main div to item-container and render :)
+  detailedCapital.appendChild(detailedCapitalText);
+  itemContainerElement.replaceChildren(detailedDiv);
+  console.log(itemContainerElement);
 };
 
 const fetchData = () => {
