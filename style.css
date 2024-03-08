@@ -85,3 +85,16 @@ nav {
   background-color: hsl(207, 26%, 17%);
 }
 /* detailed view : */
+/* all have -detailed at end to original classnames */
+.item-detailed {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.back-button {
+  width: max-content;
+  margin: 1rem;
+  margin-left: 0;
+  padding: 0.3rem 2rem;
+}

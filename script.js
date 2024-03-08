@@ -125,6 +125,7 @@ const showItem = (v) => {
 
   // back button
   let backButton = document.createElement("button");
+  backButton.className = "back-button";
   let backButtonText = document.createTextNode("Back");
   backButton.appendChild(backButtonText);
   backButton.addEventListener("click", () => {
