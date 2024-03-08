@@ -83,9 +83,10 @@ const showItem = (v) => {
   // top level domain
   let detailedTopLevelDomain = document.createElement("p");
   let topLevelDomainString = "";
-  v.topLevelDomain.map((v, i) => {
-    topLevelDomainString += v + ", ";
-  });
+  v.topLevelDomain &&
+    v.topLevelDomain.map((v, i) => {
+      topLevelDomainString += v + ", ";
+    });
   detailedTopLevelDomain.className = "country-topleveldomain-detailed";
   let detailedTopLevelDomainText = document.createTextNode(
     `Top Level Domain: ${topLevelDomainString}`
@@ -94,9 +95,10 @@ const showItem = (v) => {
   // currencies
   let detailedCurrencies = document.createElement("p");
   let currenciesString = "";
-  v.currencies.map((v, i) => {
-    currenciesString += v.name + ", ";
-  });
+  v.currencies &&
+    v.currencies.map((v, i) => {
+      currenciesString += v.name + ", ";
+    });
   detailedCurrencies.className = "country-currencies-detailed";
   let detailedCurrenciesText = document.createTextNode(
     `Currencies: ${currenciesString}`
