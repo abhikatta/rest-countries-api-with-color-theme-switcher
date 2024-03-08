@@ -4,41 +4,70 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: hsl(207, 26%, 17%);
+  background-color: hsl(0, 0%, 98%);
 }
 nav {
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  align-items: center;
+}
+.darkmode-button {
+  /* margin-right: 5rem; */
+  border: none;
+}
+.query-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   /* margin: 1rem 2rem 0rem; */
 }
+.input-search {
+  width: 20rem;
+  height: 2rem;
+  border: none;
+  color: hsl(0, 0%, 52%);
+  box-shadow: 1px 1px 1000px gray;
+  border: none;
+}
+
+::placeholder {
+  opacity: 80%;
+}
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: auto;
   height: auto;
+  display: flex;
+  flex-direction: column;
 }
 .item-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  justify-content: center;
+  align-self: center;
+  grid-template-columns: repeat(4, 0.75fr);
 }
 
 .item {
   width: fit-content;
-  /* min-height: 13rem; */
+  max-height: 25rem;
   color: white;
   background-color: hsl(209, 23%, 22%);
   margin-bottom: 1rem;
   margin-top: 1rem;
+  transition: 0.4s;
 }
-.country-flag {
-  width: 10rem;
-  height: 7rem;
-  display: flex;
+.item:hover {
+  cursor: pointer;
+  transform: scale(110%);
+  box-shadow: 5px 5px 40px black;
 }
+
 .country-title {
   padding-left: 1rem;
   font-size: 22px;
@@ -46,4 +75,7 @@ nav {
 .country-population,
 .country-capital {
   padding-left: 1rem;
+}
+.darkMode {
+  background-color: hsl(207, 26%, 17%);
 }

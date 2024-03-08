@@ -1,11 +1,19 @@
+// elements:
 const itemContainerElement = document.getElementById("item-container");
 const searchElement = document.getElementById("search");
+// theme-related:
+const darkModeButton = document.getElementById("darkmode-button");
+const body = document.body;
+const item = document.getElementById("item");
+
+// links/data or related:
 // not using this due to design requirements
 const URL = "https://restcountries.com/v3.1/all";
 const LOCAL_JSON_DATA_FILE = "./data.json";
-var req = new XMLHttpRequest();
 var countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
 var mapCountries = countriesData;
+// var req = new XMLHttpRequest();
+// event listeners:
 window.addEventListener("load", async () => {
   fetch(LOCAL_JSON_DATA_FILE)
     .then((response) => response.json())
@@ -30,6 +38,7 @@ window.addEventListener("load", async () => {
                             </div>`;
   });
 });
+// dark mode event listener:
 
 const search = () => {
   if (searchElement.value.length > 0) {
@@ -46,3 +55,7 @@ const search = () => {
       });
   }
 };
+darkModeButton.addEventListener("click", () => {
+  console.log("dark mode button pressed");
+  body.classList.toggle("darkMode");
+});
