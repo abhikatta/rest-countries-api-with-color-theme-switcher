@@ -1,6 +1,7 @@
 // elements:
 const itemContainerElement = document.getElementById("item-container");
 const searchElement = document.getElementById("search");
+const filterElement = document.getElementById("filter");
 // theme-related:
 const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
@@ -31,6 +32,11 @@ const showItem = (v) => {
   // bottom of grid:
   // Border countries (each in button/box)
   let detailedDiv = document.createElement("div");
+  // so layout needs multiple rows and columns layouts inside :
+  // first vertical row with (button+main div)
+  // main div= row (flag+data)
+  // main data div= column (title+data+?bordercountries)
+  // data div=row()
   detailedDiv.className = "item-detailed";
 
   // flag
@@ -133,7 +139,7 @@ const showItem = (v) => {
     // itemContainerElement.remove(detailedDiv);
   });
   detailedLanguages.appendChild(detailedLanguagesText);
-  // appendall to main div
+  // append all to main div
   detailedDiv.append(
     backButton,
     detailedFlag,
@@ -180,6 +186,7 @@ const fetchData = () => {
 const renderCountryDetails = () => {
   fetchData();
   // basically this line replaces every child with... nothing and creates all components again :)
+  // when coming back from detailed view
   itemContainerElement.replaceChildren();
   let countryComponents = mapCountries.map((v, i) => {
     // main div
@@ -241,5 +248,23 @@ darkModeButton.addEventListener("click", () => {
 });
 const search = () => {
   const searchValue = searchElement.value;
-  // console.log(searchValue);
+  console.log(searchValue);
+  mapCountries = countriesData;
+
+  mapCountries = mapCountries.filter((v) =>
+    v.name.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
+  );
+
+  renderCountryDetails();
+};
+
+const filter = () => {
+  const filterValue = filterElement.value;
+  console.log(filterValue.toLowerCase().trim());
+  mapCountries = countriesData;
+  mapCountries = mapCountries.filter((v) => {
+    return v.region.toLowerCase().trim().includes(filterValue.toLowerCase());
+  });
+
+  renderCountryDetails();
 };
