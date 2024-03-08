@@ -42,8 +42,7 @@ const showItem = (v) => {
   detailedTitle.className = "country-title-detailed";
   let detailedTitleText = document.createTextNode(v.name);
   detailedTitle.appendChild(detailedTitleText);
-  //
-  //
+
   // population
   let detailedPopulation = document.createElement("p");
   detailedPopulation.className = "country-population-detailed";
@@ -66,18 +65,71 @@ const showItem = (v) => {
   let detailedCapitalText = document.createTextNode(
     `Capital: ${v.capital || "Unknown"}`
   );
+  // sub region
+  let detailedSubRegion = document.createElement("p");
+  detailedSubRegion.className = "country-subregion-detailed";
+  let detailedSubRegionText = document.createTextNode(
+    `Sub Region: ${v.subregion || "Unknown"}`
+  );
+  detailedSubRegion.appendChild(detailedSubRegionText);
+
+  // native name
+  let detailedNativeName = document.createElement("p");
+  detailedNativeName.className = "country-nativename-detailed";
+  let detailedNativeNameText = document.createTextNode(
+    `Native Name: ${v.nativeName || "Unknown"}`
+  );
+  detailedNativeName.appendChild(detailedNativeNameText);
+  // top level domain
+  let detailedTopLevelDomain = document.createElement("p");
+  let topLevelDomainString = "";
+  v.topLevelDomain.map((v, i) => {
+    topLevelDomainString += v + ", ";
+  });
+  detailedTopLevelDomain.className = "country-topleveldomain-detailed";
+  let detailedTopLevelDomainText = document.createTextNode(
+    `Top Level Domain: ${topLevelDomainString}`
+  );
+  detailedTopLevelDomain.appendChild(detailedTopLevelDomainText);
+  // currencies
+  let detailedCurrencies = document.createElement("p");
+  let currenciesString = "";
+  v.currencies.map((v, i) => {
+    currenciesString += v.name + ", ";
+  });
+  detailedCurrencies.className = "country-currencies-detailed";
+  let detailedCurrenciesText = document.createTextNode(
+    `Currencies: ${currenciesString}`
+  );
+  detailedCurrencies.appendChild(detailedCurrenciesText);
+  // currencies
+  let detailedLanguages = document.createElement("p");
+  let languagesString = "";
+  v.languages.map((v, i) => {
+    languagesString += v.name + ", ";
+  });
+  detailedLanguages.className = "country-currencies-detailed";
+  let detailedLanguagesText = document.createTextNode(
+    `Languages: ${languagesString}`
+  );
+  detailedLanguages.appendChild(detailedLanguagesText);
   // appendall to main div
   detailedDiv.append(
     detailedFlag,
-    detailedCapital,
+    detailedTitle,
+    detailedNativeName,
     detailedPopulation,
     detailedRegion,
-    detailedTitle
+    detailedSubRegion,
+    detailedCapital,
+    detailedTopLevelDomain,
+    detailedCurrencies,
+    detailedLanguages
   );
   // append main div to item-container and render :)
   detailedCapital.appendChild(detailedCapitalText);
   itemContainerElement.replaceChildren(detailedDiv);
-  console.log(itemContainerElement);
+  // console.log(itemContainerElement);
 };
 
 const fetchData = () => {
