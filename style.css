@@ -52,6 +52,7 @@ nav {
   align-self: center;
   grid-template-columns: repeat(4, 0.75fr);
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .item {
