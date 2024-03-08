@@ -112,9 +112,18 @@ const showItem = (v) => {
   let detailedLanguagesText = document.createTextNode(
     `Languages: ${languagesString}`
   );
+  // back button
+  let backButton = document.createElement("button");
+  let backButtonText = document.createTextNode("<-Back");
+  backButton.appendChild(backButtonText);
+  backButton.addEventListener("click", () => {
+    renderCountryDetails();
+    // itemContainerElement.remove(detailedDiv);
+  });
   detailedLanguages.appendChild(detailedLanguagesText);
   // appendall to main div
   detailedDiv.append(
+    backButton,
     detailedFlag,
     detailedTitle,
     detailedNativeName,
@@ -154,6 +163,8 @@ const fetchData = () => {
 };
 const renderCountryDetails = () => {
   fetchData();
+  // basically this line replaces every child with... nothing and creates all components again :)
+  itemContainerElement.replaceChildren();
   let countryComponents = mapCountries.map((v, i) => {
     // main div
     let itemDiv = document.createElement("div");
