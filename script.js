@@ -2,18 +2,16 @@
 const itemContainerElement = document.getElementById("item-container");
 const searchElement = document.getElementById("search");
 const filterElement = document.getElementById("filter");
+
 // theme-related:
 const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
 let isDarkMode = false;
-let isDetailedViewShown = false;
-// var req = new XMLHttpRequest();
 
-// as of now, not using this due to design requirements and changes in
-// latest api format of rest-countries:
-// const URL = "https://restcountries.com/v3.1/all";
+// const URL = "https://restcountries.com/v3.1/name/";
 
 const LOCAL_JSON_DATA_FILE = "./data.json";
+
 let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
 let mapCountries = countriesData;
 
@@ -127,11 +125,12 @@ const showItem = (v) => {
   // currencies
   let detailedCurrencies = document.createElement("p");
   let currenciesString = "";
-  v.currencies
-    ? v.currencies.map((v, i) => {
-        currenciesString += v.name + ", ";
-      })
-    : (currenciesString = "Unknown");
+  console.log(v.languages);
+  for (var key in v.currencies) {
+    var val = v.currencies[key].name;
+    currenciesString += val + ", ";
+  }
+
   detailedCurrencies.className = "country-currencies-detailed";
   let detailedCurrenciesText = document.createTextNode(
     `Currencies: ${currenciesString}`
@@ -141,12 +140,15 @@ const showItem = (v) => {
   // languages
   let detailedLanguages = document.createElement("p");
   let languagesString = "";
-  v.languages.map((v, i) => {
-    languagesString += v.name + ", ";
-  });
+
+  for (var key in v.languages) {
+    var val = v.languages[key];
+    languagesString += val + ", ";
+  }
+
   detailedLanguages.className = "country-currencies-detailed";
   let detailedLanguagesText = document.createTextNode(
-    `Languages: ${languagesString}`
+    `Languages: ${languagesString || "Unknown"}`
   );
   detailedLanguages.appendChild(detailedLanguagesText);
 
@@ -185,7 +187,6 @@ const showItem = (v) => {
 };
 
 const fetchData = () => {
-  // console.log("function fetchData ran");
   fetch(LOCAL_JSON_DATA_FILE)
     .then((response) => response.json())
     .then((data) => {
@@ -196,7 +197,6 @@ const fetchData = () => {
         );
         countriesData = data;
       } else {
-        // console.log("fetched data from localStorage");
       }
     })
     .catch((error) => {
@@ -205,14 +205,12 @@ const fetchData = () => {
         document.createTextNode(`Something Went Wrong:\n${error.message}`)
       );
       body.append(errorElement);
-      // console.log(error);
     });
 };
+
 const renderCountryDetails = () => {
   fetchData();
-  isDetailedViewShown = false;
-  // basically this line replaces every child with... nothing and creates all components again :)
-  // when coming back from detailed view
+  // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
   let countryComponents = mapCountries.map((v, i) => {
     // main div
@@ -229,7 +227,7 @@ const renderCountryDetails = () => {
     // title
     let title = document.createElement("p");
     title.className = "country-title";
-    let titleText = document.createTextNode(v.name);
+    let titleText = document.createTextNode(v.name.common);
     title.appendChild(titleText);
 
     // population
@@ -260,9 +258,7 @@ const renderCountryDetails = () => {
     if (isDarkMode) {
       itemDiv.classList.add("darkMode-item");
     }
-    //  else {
-    //   itemDiv.classList.remove("darkMode-item");
-    // }
+
     // appending all together:
     itemDiv.append(flag, title, population, region, capital);
     return itemDiv;
@@ -289,7 +285,7 @@ const darkMode = () => {
   } else if (!isDarkMode) {
     isDarkMode = true;
   }
-  console.log(isDarkMode);
+
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.add("darkMode-item");
@@ -324,7 +320,7 @@ const darkMode = () => {
 };
 const search = () => {
   const searchValue = searchElement.value;
-  console.log(searchValue);
+
   mapCountries = countriesData;
 
   mapCountries = mapCountries.filter((v) =>
@@ -336,7 +332,7 @@ const search = () => {
 
 const filter = () => {
   const filterValue = filterElement.value;
-  console.log(filterValue.toLowerCase().trim());
+
   mapCountries = countriesData;
   mapCountries = mapCountries.filter((v) => {
     return v.region.toLowerCase().trim().includes(filterValue.toLowerCase());
