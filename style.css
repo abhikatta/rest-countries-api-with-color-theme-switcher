@@ -30,6 +30,7 @@ nav {
   justify-content: space-around;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  width: auto;
   /* margin: 1rem 2rem 0rem; */
 }
 .input-search {
@@ -113,10 +114,13 @@ nav {
   max-height: 10rem;
 }
 .back-button {
+  background-color: transparent;
+  border: none;
+  box-shadow: black 1px 1px 1000px;
   width: max-content;
   margin: 1rem;
   /* for aligning with the div */
-  margin-left: 7rem;
+  margin-left: 6rem;
   padding: 0.3rem 2rem;
 }
 .flag-detailed {
@@ -147,31 +151,33 @@ nav {
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* mobile: */
 @media (max-width: 768px) {
-  .item-container {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    flex-direction: column;
-    margin-bottom: 2rem;
+  body {
+    margin: 0;
   }
   .query-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+    align-items: self-start;
     padding-left: 2rem;
   }
-  .main-data-div-detailed,
+  .flag-detailed {
+    width: 105%;
+  }
+  .item-container,
+  .item-detailed,
   .main-div-detailed,
   .data-div-detailed {
+    margin: 0;
     display: flex;
     flex-direction: column;
-    height: auto;
-    width: auto;
+  }
+  .back-button {
+    width: max-content;
+    margin: 1rem;
     margin-left: 0;
-    margin-right: 0;
-    padding: 0;
+    padding: 0.3rem 2rem;
   }
 }
