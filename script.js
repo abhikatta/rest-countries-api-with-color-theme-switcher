@@ -6,7 +6,7 @@ const filterElement = document.getElementById("filter");
 const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
 let isDarkMode = false;
-
+let isDetailedViewShown = false;
 // var req = new XMLHttpRequest();
 
 // as of now, not using this due to design requirements and changes in
@@ -40,6 +40,7 @@ const showItem = (v) => {
 
   // main div:
   // the first vertical row:
+  isDetailedViewShown = true;
   let detailedDiv = document.createElement("div");
   detailedDiv.className = "item-detailed";
 
@@ -224,7 +225,7 @@ const fetchData = () => {
 };
 const renderCountryDetails = () => {
   fetchData();
-
+  isDetailedViewShown = false;
   // basically this line replaces every child with... nothing and creates all components again :)
   // when coming back from detailed view
   itemContainerElement.replaceChildren();
@@ -288,14 +289,14 @@ const renderCountryDetails = () => {
 };
 if (isDarkMode) {
   items.forEach((item) => {
-    item.classList.toggle("darkMode-item");
+    item.classList.add("darkMode-item");
   });
   button.forEach((button) => {
-    button.classList.toggle("darkMode-item");
+    button.classList.add("darkMode-item");
   });
   console.log("dark mode button pressed", body.classList);
 
-  body.classList.toggle("darkMode-bg");
+  body.classList.add("darkMode-bg");
   console.log("dark mode button pressed", body.classList);
 }
 // event listeners:
@@ -318,19 +319,34 @@ const darkMode = () => {
   console.log(isDarkMode);
   if (isDarkMode) {
     items.forEach((item) => {
-      item.classList.toggle("darkMode-item");
+      item.classList.add("darkMode-item");
     });
-    nav.classList.toggle("darkMode-item");
-    darkModeButton.classList.toggle("darkMode-item");
+    nav.classList.add("darkMode-item");
+    darkModeButton.classList.add("darkMode-item");
 
-    select.classList.toggle("darkMode-item");
+    select.classList.add("darkMode-item");
     if (button) {
-      button.classList.toggle("darkMode-item");
+      button.classList.add("darkMode-item");
     }
-    option.classList.toggle("darkMode-item");
+    option.classList.add("darkMode-item");
 
-    searchInput.classList.toggle("darkMode-item");
-    body.classList.toggle("darkMode-bg");
+    searchInput.classList.add("darkMode-item");
+    body.classList.add("darkMode-bg");
+  } else if (!isDarkMode) {
+    items.forEach((item) => {
+      item.classList.remove("darkMode-item");
+    });
+    nav.classList.remove("darkMode-item");
+    darkModeButton.classList.remove("darkMode-item");
+
+    select.classList.remove("darkMode-item");
+    if (button) {
+      button.classList.remove("darkMode-item");
+    }
+    option.classList.remove("darkMode-item");
+
+    searchInput.classList.remove("darkMode-item");
+    body.classList.remove("darkMode-bg");
   }
 };
 const search = () => {
