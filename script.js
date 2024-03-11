@@ -151,6 +151,11 @@ const showItem = (v) => {
   // back button
   let backButton = document.createElement("button");
   backButton.className = "back-button";
+  backButton.id = "back-button";
+  if (isDarkMode) {
+    backButton.classList.add("darkMode-item");
+  }
+
   let backButtonText = document.createTextNode("Back");
   backButton.appendChild(backButtonText);
   backButton.addEventListener("click", () => {
@@ -218,6 +223,7 @@ const fetchData = () => {
 };
 const renderCountryDetails = () => {
   fetchData();
+
   // basically this line replaces every child with... nothing and creates all components again :)
   // when coming back from detailed view
   itemContainerElement.replaceChildren();
@@ -263,6 +269,10 @@ const renderCountryDetails = () => {
     );
     capital.appendChild(capitalText);
 
+    // dark mode:
+    if (isDarkMode) {
+      itemDiv.classList.add("darkMode-item");
+    }
     // appending all together:
     itemDiv.append(flag, title, population, region, capital);
     return itemDiv;
@@ -289,18 +299,28 @@ window.addEventListener("load", renderCountryDetails);
 
 const darkMode = () => {
   const items = document.querySelectorAll(".item");
+  const button = document.getElementById("back-button");
+  const body = document.body;
+  const nav = document.querySelector("nav");
+  const select = document.querySelector("select");
+  const option = document.querySelector("option");
+  const searchInput = document.getElementById("search");
 
-  const button = document.querySelectorAll("button");
   isDarkMode = true;
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.toggle("darkMode-item");
     });
-    button.forEach((button) => {
-      button.classList.toggle("darkMode-item");
-    });
+    nav.classList.toggle("darkMode-item");
     console.log("dark mode button pressed", body.classList);
 
+    select.classList.toggle("darkMode-item");
+    if (button) {
+      button.classList.toggle("darkMode-item");
+    }
+    option.classList.toggle("darkMode-item");
+
+    searchInput.classList.toggle("darkMode-item");
     body.classList.toggle("darkMode-bg");
     console.log("dark mode button pressed", body.classList);
   }
