@@ -31,12 +31,15 @@ const showItem = (v) => {
   // capital
   // bottom of grid:
   // Border countries (each in button/box)
-  let detailedDiv = document.createElement("div");
+
   // so layout needs multiple rows and columns layouts inside :
-  // first vertical row with (button+main div)
-  // main div= row (flag+data)
+  // first vertical row with (button+main div) [done]
+  // main div= row (flag+data) []
   // main data div= column (title+data+?bordercountries)
-  // data div=row()
+  // data div=row(2columns with data)
+
+  // main div:
+  let detailedDiv = document.createElement("div");
   detailedDiv.className = "item-detailed";
 
   // flag
