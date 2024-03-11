@@ -36,11 +36,22 @@ const showItem = (v) => {
   // first vertical row with (button+main div) [done]
   // main div= row (flag+data) []
   // main data div= column (title+data+?bordercountries)
-  // data div=row(2columns with data)
+  // data div=grid(4rowsx2columns with data)
 
   // main div:
+  // the first vertical row:
   let detailedDiv = document.createElement("div");
   detailedDiv.className = "item-detailed";
+
+  // main div:
+  // has flag + data (row)
+  let mainDivDetailed = document.createElement("div");
+  mainDivDetailed.className = "main-div-detailed";
+
+  // main data div:
+  // data ( column of 3 rows)
+  let mainDataDivDetailed = document.createElement("div");
+  mainDataDivDetailed.className = "main-data-div-detailed";
 
   // flag
   let detailedFlag = document.createElement("img");
@@ -53,6 +64,10 @@ const showItem = (v) => {
   detailedTitle.className = "country-title-detailed";
   let detailedTitleText = document.createTextNode(v.name);
   detailedTitle.appendChild(detailedTitleText);
+
+  // grid of 2 columns and 4 rows holding data
+  let dataDivDetailed = document.createElement("div");
+  dataDivDetailed.className = "data-div-detailed";
 
   // population
   let detailedPopulation = document.createElement("p");
@@ -76,6 +91,7 @@ const showItem = (v) => {
   let detailedCapitalText = document.createTextNode(
     `Capital: ${v.capital || "Unknown"}`
   );
+  detailedCapital.appendChild(detailedCapitalText);
 
   // sub region
   let detailedSubRegion = document.createElement("p");
@@ -131,6 +147,7 @@ const showItem = (v) => {
   let detailedLanguagesText = document.createTextNode(
     `Languages: ${languagesString}`
   );
+  detailedLanguages.appendChild(detailedLanguagesText);
 
   // back button
   let backButton = document.createElement("button");
@@ -141,12 +158,27 @@ const showItem = (v) => {
     renderCountryDetails();
     // itemContainerElement.remove(detailedDiv);
   });
-  detailedLanguages.appendChild(detailedLanguagesText);
+
   // append all to main div
-  detailedDiv.append(
-    backButton,
-    detailedFlag,
-    detailedTitle,
+  // detailedDiv.append(
+  //   backButton,
+  //   detailedFlag,
+  //   detailedTitle,
+  //   detailedNativeName,
+  //   detailedPopulation,
+  //   detailedRegion,
+  //   detailedSubRegion,
+  //   detailedCapital,
+  //   detailedTopLevelDomain,
+  //   detailedCurrencies,
+  //   detailedLanguages
+  // );
+
+  // appending elements according to layout:
+  detailedDiv.append(backButton, mainDivDetailed);
+  mainDivDetailed.append(detailedFlag, mainDataDivDetailed);
+  mainDataDivDetailed.append(detailedTitle, dataDivDetailed);
+  dataDivDetailed.append(
     detailedNativeName,
     detailedPopulation,
     detailedRegion,
@@ -157,7 +189,6 @@ const showItem = (v) => {
     detailedLanguages
   );
   // append main div to item-container and render :)
-  detailedCapital.appendChild(detailedCapitalText);
   itemContainerElement.replaceChildren(detailedDiv);
   // console.log(itemContainerElement);
 };

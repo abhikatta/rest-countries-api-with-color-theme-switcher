@@ -80,6 +80,12 @@ nav {
   padding-left: 1rem;
   font-size: 22px;
   padding-right: 0rem;
+  font-weight: 800;
+}
+.country-title-detailed {
+  font-size: 22px;
+  padding-right: 0rem;
+  font-weight: 800;
 }
 .country-population,
 .country-region,
@@ -100,15 +106,45 @@ nav {
 /* all have -detailed at end to original classnames */
 .item-detailed {
   display: flex;
+  margin-left: 4rem;
   flex-direction: column;
   padding-left: 2rem;
   padding-right: 2rem;
+  max-height: 10rem;
 }
 .back-button {
   width: max-content;
   margin: 1rem;
-  margin-left: 0;
+  /* for aligning with the div */
+  margin-left: 7rem;
   padding: 0.3rem 2rem;
+}
+.flag-detailed {
+  height: 110%;
+}
+.main-div-detailed {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  min-width: 80vw;
+  max-width: 100%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding-top: 0;
+}
+.main-data-div-detailed {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  height: auto;
+  padding: 1rem;
+  padding-top: 0rem;
+}
+.data-div-detailed {
+  height: min-content;
+  width: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media (max-width: 768px) {
@@ -126,5 +162,16 @@ nav {
     flex-direction: column;
     gap: 2rem;
     padding-left: 2rem;
+  }
+  .main-data-div-detailed,
+  .main-div-detailed,
+  .data-div-detailed {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
   }
 }
