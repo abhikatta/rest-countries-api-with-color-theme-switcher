@@ -165,21 +165,6 @@ const showItem = (v) => {
     // itemContainerElement.remove(detailedDiv);
   });
 
-  // append all to main div
-  // detailedDiv.append(
-  //   backButton,
-  //   detailedFlag,
-  //   detailedTitle,
-  //   detailedNativeName,
-  //   detailedPopulation,
-  //   detailedRegion,
-  //   detailedSubRegion,
-  //   detailedCapital,
-  //   detailedTopLevelDomain,
-  //   detailedCurrencies,
-  //   detailedLanguages
-  // );
-
   // appending elements according to layout:
   detailedDiv.append(backButton, mainDivDetailed);
   mainDivDetailed.append(detailedFlag, mainDataDivDetailed);
@@ -287,18 +272,6 @@ const renderCountryDetails = () => {
     itemContainerElement.append(v);
   });
 };
-if (isDarkMode) {
-  items.forEach((item) => {
-    item.classList.add("darkMode-item");
-  });
-  button.forEach((button) => {
-    button.classList.add("darkMode-item");
-  });
-  console.log("dark mode button pressed", body.classList);
-
-  body.classList.add("darkMode-bg");
-  console.log("dark mode button pressed", body.classList);
-}
 // event listeners:
 window.addEventListener("load", renderCountryDetails);
 
