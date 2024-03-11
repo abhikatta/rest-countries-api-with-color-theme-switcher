@@ -1,5 +1,6 @@
 const URL = `https://restcountries.com/v3.1/all/`;
 let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
+let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 const showItem = (v) => {
   const itemContainerElement = document.getElementById("item-container");
   //   main div:
@@ -57,9 +58,15 @@ const showItem = (v) => {
   detailedSubRegion.appendChild(detailedSubRegionText);
   // native name
   let detailedNativeName = document.createElement("p");
+  let detailedNativeNameString = "";
   detailedNativeName.className = "country-nativename-detailed";
+  for (const key in v.name.nativeName) {
+    const element = v.name.nativeName[key];
+    detailedNativeNameString += element.common + ", ";
+  }
+
   let detailedNativeNameText = document.createTextNode(
-    `Native Name: ${v.nativeName || "Unknown"}`
+    `Native Name: ${detailedNativeNameString || "Unknown"}`
   );
   detailedNativeName.appendChild(detailedNativeNameText);
   // top level domain
@@ -78,7 +85,7 @@ const showItem = (v) => {
   // currencies
   let detailedCurrencies = document.createElement("p");
   let currenciesString = "";
-  console.log(v.languages);
+
   for (var key in v.currencies) {
     var val = v.currencies[key].name;
     currenciesString += val + ", ";
@@ -129,35 +136,18 @@ const showItem = (v) => {
   );
   // append main div to item-container and render :)
   itemContainerElement.append(detailedDiv);
-  // console.log(itemContainerElement);
 };
 
 const renderDetailedView = () => {
-  // const url = new URL(location.href);
-  // const currentURL = new URLSearchParams(url.search);
-  // console.log(url.search);
-  // console.log(currentURL);
-  // const itemContainer = document.getElementById("item-container");
-  // const div = document.createElement("div");
-  // const text = document.createTextNode(currentURL);
-  // div.appendChild(text);
-  // itemContainer.append(div);
-  // const url = new URL(location.href);
-  // const params1 = new URLSearchParams(url.search);
   const params = new URLSearchParams(window.location.search);
   const country = params.get("country");
-  console.log(country);
-  //   const data = fetch(URL)
-  //     .then((res) => res.json())
-  //     .then((data) => data);
-  console.log(countriesData);
 
-  for (const c in countriesData) {
-    const element = countriesData[c];
+  const countryObject = countriesData.find(
+    (currentCountry) => currentCountry.name.common === country
+  );
 
-    if (element.name.common === country) {
-      showItem(element);
-    }
+  if (countryObject) {
+    showItem(countryObject);
   }
 };
 window.addEventListener("load", renderDetailedView);

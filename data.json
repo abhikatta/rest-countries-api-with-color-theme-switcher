@@ -9,8 +9,8 @@
           "common": "Κύπρος"
         },
         "tur": {
-          "official": "Kıbrıs Cumhuriyeti",
-          "common": "Kıbrıs"
+          "official": "Kibris Cumhuriyeti",
+          "common": "Kibris"
         }
       }
     },
@@ -36,10 +36,10 @@
     "altSpellings": [
       "CY",
       "Kýpros",
-      "Kıbrıs",
+      "Kibris",
       "Republic of Cyprus",
       "Κυπριακή Δημοκρατία",
-      "Kıbrıs Cumhuriyeti"
+      "Kibris Cumhuriyeti"
     ],
     "region": "Europe",
     "subregion": "Southern Europe",
@@ -137,8 +137,8 @@
         "common": "Cypern"
       },
       "tur": {
-        "official": "Kıbrıs Cumhuriyeti",
-        "common": "Kıbrıs"
+        "official": "Kibris Cumhuriyeti",
+        "common": "Kibris"
       },
       "urd": {
         "official": "جمہوریہ قبرص",
@@ -1086,8 +1086,8 @@
         "common": "Cooköarna"
       },
       "tur": {
-        "official": "Cook Adaları",
-        "common": "Cook Adaları"
+        "official": "Cook Adalari",
+        "common": "Cook Adalari"
       },
       "urd": {
         "official": "جزائر کک",
@@ -1651,7 +1651,7 @@
         "common": "Venezuela"
       },
       "tur": {
-        "official": "Bolivarcı Venezuela Cumhuriyeti",
+        "official": "Bolivarci Venezuela Cumhuriyeti",
         "common": "Venezuela"
       },
       "urd": {
@@ -2215,8 +2215,8 @@
         "common": "Kroatien"
       },
       "tur": {
-        "official": "Hırvatistan Cumhuriyeti",
-        "common": "Hırvatistan"
+        "official": "Hirvatistan Cumhuriyeti",
+        "common": "Hirvatistan"
       },
       "urd": {
         "official": "جمہوریہ کرویئشا",
@@ -2401,8 +2401,8 @@
         "common": "Storbritannien"
       },
       "tur": {
-        "official": "Büyük Britanya ve Kuzey İrlanda Birleşik Krallığı",
-        "common": "Birleşik Krallık"
+        "official": "Büyük Britanya ve Kuzey İrlanda Birleşik Kralliği",
+        "common": "Birleşik Krallik"
       },
       "urd": {
         "official": "مملکتِ متحدہ برطانیہ عظمی و شمالی آئرلینڈ",
@@ -3047,7 +3047,7 @@
       "official": "Republic of Azerbaijan",
       "nativeName": {
         "aze": {
-          "official": "Azərbaycan Respublikası",
+          "official": "Azərbaycan Respublikasi",
           "common": "Azərbaycan"
         }
       }
@@ -3071,7 +3071,7 @@
       "suffixes": ["94"]
     },
     "capital": ["Baku"],
-    "altSpellings": ["AZ", "Republic of Azerbaijan", "Azərbaycan Respublikası"],
+    "altSpellings": ["AZ", "Republic of Azerbaijan", "Azərbaycan Respublikasi"],
     "region": "Asia",
     "subregion": "Western Asia",
     "languages": {
@@ -3549,8 +3549,8 @@
         "common": "Amerikanska Samoa"
       },
       "tur": {
-        "official": "Amerikan Samoası",
-        "common": "Amerikan Samoası"
+        "official": "Amerikan Samoasi",
+        "common": "Amerikan Samoasi"
       },
       "urd": {
         "official": "امریکی سمووا",
@@ -5600,8 +5600,8 @@
         "common": "Kirgizistan"
       },
       "tur": {
-        "official": "Kırgızistan Cumhuriyeti",
-        "common": "Kırgızistan"
+        "official": "Kirgizistan Cumhuriyeti",
+        "common": "Kirgizistan"
       },
       "urd": {
         "official": "جمہوریہ کرغیزستان",
@@ -5982,7 +5982,7 @@
         "common": "Guam"
       },
       "tur": {
-        "official": "Guam Toprağı",
+        "official": "Guam Topraği",
         "common": "Guam"
       },
       "urd": {
@@ -7674,7 +7674,7 @@
         "common": "Marocko"
       },
       "tur": {
-        "official": "Fas Krallığı",
+        "official": "Fas Kralliği",
         "common": "Fas"
       },
       "urd": {
@@ -8046,8 +8046,8 @@
         "common": "Julön"
       },
       "tur": {
-        "official": "Christmas Adası",
-        "common": "Christmas Adası"
+        "official": "Christmas Adasi",
+        "common": "Christmas Adasi"
       },
       "urd": {
         "official": "ریاستِ جزیرہ کرسمس",
@@ -8429,7 +8429,7 @@
         "common": "Brunei"
       },
       "tur": {
-        "official": "Brunei Barış Ülkesi Devleti",
+        "official": "Brunei Bariş Ülkesi Devleti",
         "common": "Brunei"
       },
       "urd": {
@@ -8611,8 +8611,8 @@
         "common": "Franska Guyana"
       },
       "tur": {
-        "official": "Fransız Guyanası",
-        "common": "Fransız Guyanası"
+        "official": "Fransiz Guyanasi",
+        "common": "Fransiz Guyanasi"
       },
       "urd": {
         "official": "گیانا",
@@ -13473,8 +13473,8 @@
         "common": "Brittiska Jungfruöarna"
       },
       "tur": {
-        "official": "Virjin Adaları",
-        "common": "Virjin Adaları"
+        "official": "Virjin Adalari",
+        "common": "Virjin Adalari"
       },
       "urd": {
         "official": "برطانوی جزائر ورجن",
@@ -14213,8 +14213,8 @@
         "common": "Caymanöarna"
       },
       "tur": {
-        "official": "Cayman Adaları",
-        "common": "Cayman Adaları"
+        "official": "Cayman Adalari",
+        "common": "Cayman Adalari"
       },
       "urd": {
         "official": "جزائر کیمین",
@@ -14393,7 +14393,7 @@
         "common": "Spanien"
       },
       "tur": {
-        "official": "İspanya Krallığı",
+        "official": "İspanya Kralliği",
         "common": "İspanya"
       },
       "urd": {
@@ -16153,7 +16153,7 @@
         "common": "Sverige"
       },
       "tur": {
-        "official": "İsveç Krallığı",
+        "official": "İsveç Kralliği",
         "common": "İsveç"
       },
       "urd": {
@@ -16338,8 +16338,8 @@
         "common": "Brittiska territoriet i Indiska Oceanen"
       },
       "tur": {
-        "official": "Britanya Hint Okyanusu Toprakları",
-        "common": "Britanya Hint Okyanusu Toprakları"
+        "official": "Britanya Hint Okyanusu Topraklari",
+        "common": "Britanya Hint Okyanusu Topraklari"
       },
       "urd": {
         "official": "برطانوی بحرہند خطہ",
@@ -17408,8 +17408,8 @@
         "common": "Norfolkön"
       },
       "tur": {
-        "official": "Norfolk Adası",
-        "common": "Norfolk Adası"
+        "official": "Norfolk Adasi",
+        "common": "Norfolk Adasi"
       },
       "urd": {
         "official": "جزیرہ نورفک خطہ",
@@ -19654,8 +19654,8 @@
         "common": "Franska södra territorierna"
       },
       "tur": {
-        "official": "Fransız Güney ve Antarktika Toprakları",
-        "common": "Fransız Güney ve Antarktika Toprakları"
+        "official": "Fransiz Güney ve Antarktika Topraklari",
+        "common": "Fransiz Güney ve Antarktika Topraklari"
       },
       "urd": {
         "official": "سرزمینِ جنوبی فرانسیسیہ و انٹارکٹیکہ",
@@ -20581,8 +20581,8 @@
         "common": "Isle of Man"
       },
       "tur": {
-        "official": "Man Adası",
-        "common": "Man Adası"
+        "official": "Man Adasi",
+        "common": "Man Adasi"
       },
       "urd": {
         "official": "آئل آف مین",
@@ -20761,7 +20761,7 @@
         "common": "Bhutan"
       },
       "tur": {
-        "official": "Butan Krallığı",
+        "official": "Butan Kralliği",
         "common": "Butan"
       },
       "urd": {
@@ -20947,7 +20947,7 @@
         "common": "Kambodja"
       },
       "tur": {
-        "official": "Kamboçya Krallığı",
+        "official": "Kamboçya Kralliği",
         "common": "Kamboçya"
       },
       "urd": {
@@ -23014,7 +23014,7 @@
         "common": "Swaziland"
       },
       "tur": {
-        "official": "Esvatini Krallığı",
+        "official": "Esvatini Kralliği",
         "common": "Esvatini"
       },
       "urd": {
@@ -23211,7 +23211,7 @@
         "common": "Papua Nya Guinea"
       },
       "tur": {
-        "official": "Papua Yeni Gine Bağımsız Devleti",
+        "official": "Papua Yeni Gine Bağimsiz Devleti",
         "common": "Papua Yeni Gine"
       },
       "urd": {
@@ -24740,7 +24740,7 @@
         "common": "Tonga"
       },
       "tur": {
-        "official": "Tonga Krallığı",
+        "official": "Tonga Kralliği",
         "common": "Tonga"
       },
       "urd": {
@@ -25668,7 +25668,7 @@
         "common": "Saudiarabien"
       },
       "tur": {
-        "official": "Suudi Arabistan Krallığı",
+        "official": "Suudi Arabistan Kralliği",
         "common": "Suudi Arabistan"
       },
       "urd": {
@@ -25851,8 +25851,8 @@
         "common": "Egypten"
       },
       "tur": {
-        "official": "Mısır Arap Cumhuriyeti",
-        "common": "Mısır"
+        "official": "Misir Arap Cumhuriyeti",
+        "common": "Misir"
       },
       "urd": {
         "official": "مصری عرب جمہوریہ",
@@ -26796,8 +26796,8 @@
         "common": "Amerikanska Jungfruöarna"
       },
       "tur": {
-        "official": "Amerika Birleşik Devletleri Virjin Adaları",
-        "common": "ABD Virjin Adaları"
+        "official": "Amerika Birleşik Devletleri Virjin Adalari",
+        "common": "ABD Virjin Adalari"
       },
       "urd": {
         "official": "امریکی جزائر ورجن",
@@ -26975,8 +26975,8 @@
         "common": "Marshallöarna"
       },
       "tur": {
-        "official": "Marshall Adaları Cumhuriyeti",
-        "common": "Marshall Adaları"
+        "official": "Marshall Adalari Cumhuriyeti",
+        "common": "Marshall Adalari"
       },
       "urd": {
         "official": "جمہوریہ جزائر مارشل",
@@ -29793,8 +29793,8 @@
         "common": "Samoa"
       },
       "tur": {
-        "official": "Bağımsız Samoa Devleti",
-        "common": "Bağımsız Samoa Devleti"
+        "official": "Bağimsiz Samoa Devleti",
+        "common": "Bağimsiz Samoa Devleti"
       },
       "urd": {
         "official": "آزاد سلطنتِ ساموا",
@@ -30341,8 +30341,8 @@
         "common": "Bouvetön"
       },
       "tur": {
-        "official": "Bouvet Adası",
-        "common": "Bouvet Adası"
+        "official": "Bouvet Adasi",
+        "common": "Bouvet Adasi"
       },
       "urd": {
         "official": "جزیرہ بووہ",
@@ -31231,7 +31231,7 @@
         "common": "Åland"
       },
       "tur": {
-        "official": "Åland Adaları",
+        "official": "Åland Adalari",
         "common": "Åland"
       },
       "urd": {
@@ -31427,7 +31427,7 @@
         "common": "Belgien"
       },
       "tur": {
-        "official": "Belçika Krallığı",
+        "official": "Belçika Kralliği",
         "common": "Belğika"
       },
       "urd": {
@@ -31809,7 +31809,7 @@
         "common": "Danmark"
       },
       "tur": {
-        "official": "Danimarka Krallığı",
+        "official": "Danimarka Kralliği",
         "common": "Danimarka"
       },
       "urd": {
@@ -32192,8 +32192,8 @@
         "common": "Wallis- och Futunaöarna"
       },
       "tur": {
-        "official": "Wallis ve Futuna Adaları Bölgesi",
-        "common": "Wallis ve Futuna Adaları Bölgesi"
+        "official": "Wallis ve Futuna Adalari Bölgesi",
+        "common": "Wallis ve Futuna Adalari Bölgesi"
       },
       "urd": {
         "official": "سر زمینِ والس و فتونہ جزائر",
@@ -33153,8 +33153,8 @@
         "common": "Förenta staternas mindre öar i Oceanien och Västindien"
       },
       "tur": {
-        "official": "Amerika Birleşik Devletleri Küçük Dış Adaları",
-        "common": "Amerika Birleşik Devletleri Küçük Dış Adaları"
+        "official": "Amerika Birleşik Devletleri Küçük Diş Adalari",
+        "common": "Amerika Birleşik Devletleri Küçük Diş Adalari"
       },
       "urd": {
         "official": "امریکی چھوٹے بیرونی جزائر",
@@ -34636,8 +34636,8 @@
         "common": "Nordmarianerna"
       },
       "tur": {
-        "official": "Kuzey Mariana Adaları Milletler Topluluğu",
-        "common": "Kuzey Mariana Adaları"
+        "official": "Kuzey Mariana Adalari Milletler Topluluğu",
+        "common": "Kuzey Mariana Adalari"
       },
       "urd": {
         "official": "دولتِ مشترکہ جزائر شمالی ماریانا",
@@ -35189,8 +35189,8 @@
         "common": "Sydgeorgien"
       },
       "tur": {
-        "official": "Güney Georgia ve Güney Sandwich Adaları",
-        "common": "Güney Georgia ve Güney Sandwich Adaları"
+        "official": "Güney Georgia ve Güney Sandwich Adalari",
+        "common": "Güney Georgia ve Güney Sandwich Adalari"
       },
       "urd": {
         "official": "جنوبی جارجیا و جزائر جنوبی سینڈوچ",
@@ -36095,8 +36095,8 @@
         "common": "Turks- och Caicosöarna"
       },
       "tur": {
-        "official": "Turks ve Caicos Adaları",
-        "common": "Turks ve Caicos Adaları"
+        "official": "Turks ve Caicos Adalari",
+        "common": "Turks ve Caicos Adalari"
       },
       "urd": {
         "official": "جزائر کیکس و ترکیہ",
@@ -36275,8 +36275,8 @@
         "common": "Serbien"
       },
       "tur": {
-        "official": "Sırbistan Cumhuriyeti",
-        "common": "Sırbistan"
+        "official": "Sirbistan Cumhuriyeti",
+        "common": "Sirbistan"
       },
       "urd": {
         "official": "جمہوریہ سربیا",
@@ -36655,8 +36655,8 @@
         "common": "Färöarna"
       },
       "tur": {
-        "official": "Faroe Adaları",
-        "common": "Faroe Adaları"
+        "official": "Faroe Adalari",
+        "common": "Faroe Adalari"
       },
       "urd": {
         "official": "جزائر فارو",
@@ -37486,7 +37486,7 @@
       "Казахстан",
       "Republic of Kazakhstan",
       "Қазақстан Республикасы",
-      "Qazaqstan Respublïkası",
+      "Qazaqstan Respublïkasi",
       "Республика Казахстан",
       "Respublika Kazakhstan"
     ],
@@ -37771,8 +37771,8 @@
         "common": "Gibraltar"
       },
       "tur": {
-        "official": "Cebelitarık",
-        "common": "Cebelitarık"
+        "official": "Cebelitarik",
+        "common": "Cebelitarik"
       },
       "urd": {
         "official": "جبل الطارق",
@@ -38711,8 +38711,8 @@
         "common": "Franska Polynesien"
       },
       "tur": {
-        "official": "Fransız Polinezyası",
-        "common": "Fransız Polinezyası"
+        "official": "Fransiz Polinezyasi",
+        "common": "Fransiz Polinezyasi"
       },
       "urd": {
         "official": "فرانسیسی پولینیشیا",
@@ -38894,8 +38894,8 @@
         "common": "Pitcairnöarna"
       },
       "tur": {
-        "official": "Pitcairn, Henderson, Ducie ve Oeno Adaları",
-        "common": "Pitcairn Adaları"
+        "official": "Pitcairn, Henderson, Ducie ve Oeno Adalari",
+        "common": "Pitcairn Adalari"
       },
       "urd": {
         "official": "پٹکیرن جزائر",
@@ -39071,7 +39071,7 @@
         "common": "Jordanien"
       },
       "tur": {
-        "official": "Ürdün Hâşimi Krallığı",
+        "official": "Ürdün Hâşimi Kralliği",
         "common": "Ürdün"
       },
       "urd": {
@@ -39455,7 +39455,7 @@
         "common": "Thailand"
       },
       "tur": {
-        "official": "Tayland Krallığı",
+        "official": "Tayland Kralliği",
         "common": "Tayland"
       },
       "urd": {
@@ -39646,8 +39646,8 @@
         "common": "Karibiska Nederländerna"
       },
       "tur": {
-        "official": "Karayip Hollandası",
-        "common": "Karayip Hollandası"
+        "official": "Karayip Hollandasi",
+        "common": "Karayip Hollandasi"
       },
       "urd": {
         "official": "بونایر، سینٹ ایوسٹائیس اور سابا",
@@ -40373,7 +40373,7 @@
         "common": "Bahrain"
       },
       "tur": {
-        "official": "Bahreyn Krallığı",
+        "official": "Bahreyn Kralliği",
         "common": "Bahreyn"
       },
       "urd": {
@@ -40745,8 +40745,8 @@
         "common": "Kokosöarna"
       },
       "tur": {
-        "official": "Cocos (Keeling) Adaları",
-        "common": "Cocos (Keeling) Adaları"
+        "official": "Cocos (Keeling) Adalari",
+        "common": "Cocos (Keeling) Adalari"
       },
       "urd": {
         "official": "جزائر (کیلنگ) کوکوس",
@@ -41109,8 +41109,8 @@
         "common": "Salomonöarna"
       },
       "tur": {
-        "official": "Solomon Adaları",
-        "common": "Solomon Adaları"
+        "official": "Solomon Adalari",
+        "common": "Solomon Adalari"
       },
       "urd": {
         "official": "جزائر سلیمان",
@@ -41278,8 +41278,8 @@
         "common": "Heard- och McDonaldöarna"
       },
       "tur": {
-        "official": "Heard Adası ve McDonald Adaları",
-        "common": "Heard Adası ve McDonald Adaları"
+        "official": "Heard Adasi ve McDonald Adalari",
+        "common": "Heard Adasi ve McDonald Adalari"
       },
       "urd": {
         "official": "جزیرہ ہرڈ و جزائر مکڈونلڈ",
@@ -41850,7 +41850,7 @@
         "common": "Luxemburg"
       },
       "tur": {
-        "official": "Lüksemburg Büyük Dükalığı",
+        "official": "Lüksemburg Büyük Dükaliği",
         "common": "Lüksemburg"
       },
       "urd": {
@@ -42218,8 +42218,8 @@
         "common": "Falklandsöarna"
       },
       "tur": {
-        "official": "Falkland (Malvina) Adaları",
-        "common": "Falkland (Malvina) Adaları"
+        "official": "Falkland (Malvina) Adalari",
+        "common": "Falkland (Malvina) Adalari"
       },
       "urd": {
         "official": "جزائر فاکلینڈ",
@@ -42970,7 +42970,7 @@
         "common": "Guernsey"
       },
       "tur": {
-        "official": "Guernsey Muhafızlığı",
+        "official": "Guernsey Muhafizliği",
         "common": "Guernsey"
       },
       "urd": {
@@ -43167,7 +43167,7 @@
         "common": "Norge"
       },
       "tur": {
-        "official": "Norveç Krallığı",
+        "official": "Norveç Kralliği",
         "common": "Norveç"
       },
       "urd": {
@@ -43796,7 +43796,7 @@
         "common": "Lesotho"
       },
       "tur": {
-        "official": "Lesotho Krallığı",
+        "official": "Lesotho Kralliği",
         "common": "Lesotho"
       },
       "urd": {
@@ -44931,7 +44931,7 @@
         "common": "Oman"
       },
       "tur": {
-        "official": "Umman Sultanlığı",
+        "official": "Umman Sultanliği",
         "common": "Umman"
       },
       "urd": {

@@ -128,9 +128,7 @@ nav {
   margin-left: 6rem;
   padding: 0.3rem 2rem;
 }
-.flag-detailed {
-  height: 110%;
-}
+
 .main-div-detailed {
   display: flex;
   flex-direction: row;
