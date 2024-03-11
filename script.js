@@ -6,6 +6,7 @@ const filterElement = document.getElementById("filter");
 const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
 let isDarkMode = false;
+
 // var req = new XMLHttpRequest();
 
 // as of now, not using this due to design requirements and changes in
@@ -273,6 +274,9 @@ const renderCountryDetails = () => {
     if (isDarkMode) {
       itemDiv.classList.add("darkMode-item");
     }
+    //  else {
+    //   itemDiv.classList.remove("darkMode-item");
+    // }
     // appending all together:
     itemDiv.append(flag, title, population, region, capital);
     return itemDiv;
@@ -306,7 +310,12 @@ const darkMode = () => {
   const option = document.querySelector("option");
   const searchInput = document.getElementById("search");
   const darkModeButton = document.getElementById("darkmode-button");
-  isDarkMode = true;
+  if (isDarkMode) {
+    isDarkMode = false;
+  } else if (!isDarkMode) {
+    isDarkMode = true;
+  }
+  console.log(isDarkMode);
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.toggle("darkMode-item");

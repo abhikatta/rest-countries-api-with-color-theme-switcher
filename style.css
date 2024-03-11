@@ -119,7 +119,7 @@ nav {
   max-height: 10rem;
 }
 .back-button {
-  background-color: transparent;
+  background-color: hsl(0, 0%, 100%);
   border: none;
   box-shadow: rgb(208, 208, 208) 1px 1px 1000px;
   width: max-content;
@@ -181,6 +181,9 @@ nav {
   }
   .flag-detailed {
     width: 105%;
+  }
+  .item-container {
+    align-items: center;
   }
   .item-container,
   .item-detailed,
