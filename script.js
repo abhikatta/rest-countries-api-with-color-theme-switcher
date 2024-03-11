@@ -305,14 +305,14 @@ const darkMode = () => {
   const select = document.querySelector("select");
   const option = document.querySelector("option");
   const searchInput = document.getElementById("search");
-
+  const darkModeButton = document.getElementById("darkmode-button");
   isDarkMode = true;
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.toggle("darkMode-item");
     });
     nav.classList.toggle("darkMode-item");
-    console.log("dark mode button pressed", body.classList);
+    darkModeButton.classList.toggle("darkMode-item");
 
     select.classList.toggle("darkMode-item");
     if (button) {
@@ -322,7 +322,6 @@ const darkMode = () => {
 
     searchInput.classList.toggle("darkMode-item");
     body.classList.toggle("darkMode-bg");
-    console.log("dark mode button pressed", body.classList);
   }
 };
 const search = () => {
