@@ -4,7 +4,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: hsl(0, 0%, 98%);
+  background-color: hsl(0, 0%, 96%);
+  color: hsl(200, 15%, 8%);
 }
 nav {
   padding-top: 1rem;
@@ -37,16 +38,19 @@ nav {
   width: 20rem;
   height: 2rem;
   border: none;
-  color: hsl(0, 0%, 52%);
   box-shadow: 1px 1px 1000px gray;
   border: none;
   outline: none;
-
+  background: url("https://static.thenounproject.com/png/101791-200.png")
+    no-repeat left;
+  background-size: 1rem;
+  background-position: 1rem;
   padding: 0.7rem 2rem;
 }
 
 ::placeholder {
   opacity: 80%;
+  padding-left: 1rem;
 }
 .main {
   width: auto;
@@ -66,15 +70,18 @@ nav {
 .item {
   max-width: min-content;
   max-height: auto;
-  color: white;
-  background-color: hsl(209, 23%, 22%);
+
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(200, 15%, 8%);
+  /* box-shadow: 5px 5px 10px rgb(208, 208, 208); */
+
   transition: 0.4s;
   padding-bottom: 1rem;
 }
 .item:hover {
   cursor: pointer;
   transform: scale(110%);
-  box-shadow: 5px 5px 40px black;
+  /* box-shadow: 5px 5px 40px rgb(208, 208, 208); */
 }
 
 .country-title {
@@ -93,9 +100,7 @@ nav {
 .country-capital {
   padding-left: 1rem;
 }
-.darkMode {
-  background-color: hsl(207, 26%, 17%);
-}
+
 .filter {
   border: none;
   padding: 0.7rem 2rem;
@@ -116,7 +121,7 @@ nav {
 .back-button {
   background-color: transparent;
   border: none;
-  box-shadow: black 1px 1px 1000px;
+  box-shadow: rgb(208, 208, 208) 1px 1px 1000px;
   width: max-content;
   margin: 1rem;
   /* for aligning with the div */
@@ -144,6 +149,7 @@ nav {
   padding: 1rem;
   padding-top: 0rem;
 }
+
 .data-div-detailed {
   height: min-content;
   width: auto;
@@ -151,6 +157,16 @@ nav {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.darkMode-item {
+  background-color: hsl(209, 23%, 22%);
+  box-shadow: none;
+  color: hsl(0, 0%, 100%);
+}
+.darkMode-bg {
+  background-color: hsl(207, 26%, 17%);
+  box-shadow: none;
+  color: hsl(0, 0%, 100%);
+}
 /* mobile: */
 @media (max-width: 768px) {
   body {
@@ -179,5 +195,11 @@ nav {
     margin: 1rem;
     margin-left: 0;
     padding: 0.3rem 2rem;
+  }
+  nav {
+    font-size: 14px;
+  }
+  .input-search {
+    max-width: 18rem;
   }
 }

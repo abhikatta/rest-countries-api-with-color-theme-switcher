@@ -5,8 +5,7 @@ const filterElement = document.getElementById("filter");
 // theme-related:
 const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
-const item = document.getElementById("item");
-
+let isDarkMode = false;
 // var req = new XMLHttpRequest();
 
 // as of now, not using this due to design requirements and changes in
@@ -273,13 +272,39 @@ const renderCountryDetails = () => {
     itemContainerElement.append(v);
   });
 };
+if (isDarkMode) {
+  items.forEach((item) => {
+    item.classList.toggle("darkMode-item");
+  });
+  button.forEach((button) => {
+    button.classList.toggle("darkMode-item");
+  });
+  console.log("dark mode button pressed", body.classList);
 
+  body.classList.toggle("darkMode-bg");
+  console.log("dark mode button pressed", body.classList);
+}
 // event listeners:
 window.addEventListener("load", renderCountryDetails);
 
-darkModeButton.addEventListener("click", () => {
-  // console.log("dark mode button pressed");
-});
+const darkMode = () => {
+  const items = document.querySelectorAll(".item");
+
+  const button = document.querySelectorAll("button");
+  isDarkMode = true;
+  if (isDarkMode) {
+    items.forEach((item) => {
+      item.classList.toggle("darkMode-item");
+    });
+    button.forEach((button) => {
+      button.classList.toggle("darkMode-item");
+    });
+    console.log("dark mode button pressed", body.classList);
+
+    body.classList.toggle("darkMode-bg");
+    console.log("dark mode button pressed", body.classList);
+  }
+};
 const search = () => {
   const searchValue = searchElement.value;
   console.log(searchValue);
