@@ -7,13 +7,7 @@ const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
 let isDarkMode = false;
 let isDetailedViewShown = false;
-// var req = new XMLHttpRequest();
 
-// as of now, not using this due to design requirements and changes in
-// latest api format of rest-countries:
-// const URL = "https://restcountries.com/v3.1/all";
-
-const LOCAL_JSON_DATA_FILE = "./data.json";
 let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
 let mapCountries = countriesData;
 
@@ -199,32 +193,8 @@ const showItem = (v) => {
   // console.log(itemContainerElement);
 };
 
-const fetchData = () => {
-  // console.log("function fetchData ran");
-  fetch(LOCAL_JSON_DATA_FILE)
-    .then((response) => response.json())
-    .then((data) => {
-      if (localStorage.getItem("countriesData") === null) {
-        countriesData = localStorage.setItem(
-          "countriesData",
-          JSON.stringify(data)
-        );
-        countriesData = data;
-      } else {
-        // console.log("fetched data from localStorage");
-      }
-    })
-    .catch((error) => {
-      let errorElement = document.createElement("h1");
-      errorElement.appendChild(
-        document.createTextNode(`Something Went Wrong:\n${error.message}`)
-      );
-      body.append(errorElement);
-      // console.log(error);
-    });
-};
 const renderCountryDetails = () => {
-  fetchData();
+  // fetchData();
   isDetailedViewShown = false;
   // basically this line replaces every child with... nothing and creates all components again :)
   // when coming back from detailed view
@@ -287,18 +257,6 @@ const renderCountryDetails = () => {
     itemContainerElement.append(v);
   });
 };
-if (isDarkMode) {
-  items.forEach((item) => {
-    item.classList.add("darkMode-item");
-  });
-  button.forEach((button) => {
-    button.classList.add("darkMode-item");
-  });
-  console.log("dark mode button pressed", body.classList);
-
-  body.classList.add("darkMode-bg");
-  console.log("dark mode button pressed", body.classList);
-}
 // event listeners:
 window.addEventListener("load", renderCountryDetails);
 
@@ -348,26 +306,4 @@ const darkMode = () => {
     searchInput.classList.remove("darkMode-item");
     body.classList.remove("darkMode-bg");
   }
-};
-const search = () => {
-  const searchValue = searchElement.value;
-  console.log(searchValue);
-  mapCountries = countriesData;
-
-  mapCountries = mapCountries.filter((v) =>
-    v.name.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
-  );
-
-  renderCountryDetails();
-};
-
-const filter = () => {
-  const filterValue = filterElement.value;
-  console.log(filterValue.toLowerCase().trim());
-  mapCountries = countriesData;
-  mapCountries = mapCountries.filter((v) => {
-    return v.region.toLowerCase().trim().includes(filterValue.toLowerCase());
-  });
-
-  renderCountryDetails();
 };
