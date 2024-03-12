@@ -2,8 +2,8 @@ const params = new URLSearchParams(window.location.search);
 const country = params.get("country");
 const border = params.get("codes");
 let URL = "";
-URL = `https://restcountries.com/v3.1/name/${country}?fields=name,capital,population,region,subregion,flags,nativeName,languages,tld,currencies,borders`;
-
+URL = `https://restcountries.com/v3.1/name/${country}?fullText=true`;
+const LOOK_UP_URL = "https://restcountries.com/v3.1/all?fields=name,cca3";
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 let lookUpData = JSON.parse(localStorage.getItem("lookUpData")) || [];
 const fetchLookUpData = async () => {
@@ -11,7 +11,7 @@ const fetchLookUpData = async () => {
     return;
   } else {
     try {
-      const response = await fetch("../countries.json");
+      const response = await fetch(LOOK_UP_URL);
       lookUpData = await response.json();
 
       localStorage.setItem("lookUpData", JSON.stringify(lookUpData));
@@ -26,10 +26,10 @@ const borderCountryLookup = (v) => {
   // so using the first 2 letters of v, this finds the object(i.e country) and returns it
 
   const country = lookUpData.find((item) => {
-    return item.code === v.slice(0, 2);
+    return item.cca3 === v;
   });
   if (country) {
-    return country.name.toString();
+    return country.name.common;
   } else return null;
 };
 
