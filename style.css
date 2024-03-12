@@ -165,6 +165,23 @@ nav {
   box-shadow: none;
   color: hsl(0, 0%, 100%);
 }
+.border-countries-container {
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.border-countries-container > p {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0.4rem 1rem;
+}
+.border-countries-container > p:hover {
+  cursor: pointer;
+}
+
 /* mobile: */
 @media (max-width: 768px) {
   body {

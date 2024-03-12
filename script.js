@@ -9,7 +9,6 @@ const body = document.body;
 let isDarkMode = false;
 
 // API endpoint
-// const URL = "https://restcountries.com/v3.1/all";
 const filteredEndpoint =
   "https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags";
 

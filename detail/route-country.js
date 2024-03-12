@@ -1,9 +1,37 @@
 const params = new URLSearchParams(window.location.search);
 const country = params.get("country");
-
-const URL = `https://restcountries.com/v3.1/name/${country}?fields=name,capital,population,region,flags,nativeName,languages,tld,currencies`;
+const border = params.get("codes");
+let URL = "";
+URL = `https://restcountries.com/v3.1/name/${country}?fields=name,capital,population,region,subregion,flags,nativeName,languages,tld,currencies,borders`;
 
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
+let lookUpData = JSON.parse(localStorage.getItem("lookUpData")) || [];
+const fetchLookUpData = async () => {
+  if (localStorage.getItem("lookUpData")) {
+    return;
+  } else {
+    try {
+      const response = await fetch("../countries.json");
+      lookUpData = await response.json();
+
+      localStorage.setItem("lookUpData", JSON.stringify(lookUpData));
+    } catch (error) {
+      console.log(`something went wrong while fetching lookup data:,${error}`);
+    }
+  }
+};
+
+const borderCountryLookup = (v) => {
+  // data in countries.json uses cca2, but borders has cca3 format
+  // so using the first 2 letters of v, this finds the object(i.e country) and returns it
+
+  const country = lookUpData.find((item) => {
+    return item.code === v.slice(0, 2);
+  });
+  if (country) {
+    return country.name.toString();
+  } else return null;
+};
 
 const showItem = (v) => {
   const itemContainerElement = document.getElementById("item-container");
@@ -99,6 +127,7 @@ const showItem = (v) => {
     `Currencies: ${currenciesString}`
   );
   detailedCurrencies.appendChild(detailedCurrenciesText);
+
   // languages
   let detailedLanguages = document.createElement("p");
   let languagesString = "";
@@ -111,6 +140,35 @@ const showItem = (v) => {
     `Languages: ${languagesString || "Unknown"}`
   );
   detailedLanguages.appendChild(detailedLanguagesText);
+
+  // border countries
+  let detailedBorderCountriesContainer = document.createElement("div");
+  detailedBorderCountriesContainer.className = "border-countries-container";
+  detailedBorderCountriesContainer.appendChild(
+    document.createTextNode("Border Countries: ")
+  );
+
+  // for each border country, the following is :
+  // getting the name from borderCountryLookup function
+  // creating a p element with on click event listener to go to the clicked country
+  // appending them to the container
+  v.borders.map((border) => {
+    let detailedBorderCountriesString = borderCountryLookup(border);
+    if (detailedBorderCountriesString !== null) {
+      let borderCountryComponent = document.createElement("p");
+      //  borderCountryComponent.className = " border-country";
+      let borderCountryText = document.createTextNode(
+        detailedBorderCountriesString
+      );
+      borderCountryComponent.addEventListener("click", () => {
+        const newUrl = `/detail/country.html?country=${v.name.common}`;
+        window.location.href = newUrl;
+      });
+      borderCountryComponent.appendChild(borderCountryText);
+      detailedBorderCountriesContainer.append(borderCountryComponent);
+    }
+  });
+
   // back button
   let backButton = document.createElement("button");
   backButton.className = "back-button";
@@ -124,7 +182,11 @@ const showItem = (v) => {
   // appending elements according to layout:
   detailedDiv.append(backButton, mainDivDetailed);
   mainDivDetailed.append(detailedFlag, mainDataDivDetailed);
-  mainDataDivDetailed.append(detailedTitle, dataDivDetailed);
+  mainDataDivDetailed.append(
+    detailedTitle,
+    dataDivDetailed,
+    detailedBorderCountriesContainer
+  );
   dataDivDetailed.append(
     detailedNativeName,
     detailedPopulation,
@@ -140,6 +202,8 @@ const showItem = (v) => {
 };
 
 const fetchCountryData = async () => {
+  await fetchLookUpData();
+
   const response = await fetch(URL);
   countryData = await response.json();
 };
@@ -147,7 +211,7 @@ const fetchCountryData = async () => {
 const renderDetailedView = async () => {
   try {
     await fetchCountryData();
-    showItem(countryData[0]);
+    countryData.map((v) => showItem(v));
   } catch (error) {
     console.error(error);
   }
