@@ -11,24 +11,27 @@ let isDarkMode = false;
 // API endpoint
 const URL = "https://restcountries.com/v3.1/all";
 
+let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
+let mapCountries = countriesData;
+
 const showItem = (v) => {
   const newUrl = `/detail/country.html?country=${v.name.common}`;
   window.location.href = newUrl;
 };
 
 const fetchData = async () => {
-  try {
-    const data = await fetch(URL);
-    const countriesData = data.json();
-    return countriesData;
-  } catch (error) {
-    console.log(error);
-    console.log("fetching");
+  if (!localStorage.getItem("countriesData")) {
+    const response = await fetch(URL);
+    const data = await response.json();
+    countriesData = data;
+    localStorage.setItem("countriesData", JSON.stringify(data));
+  } else {
+    return;
   }
 };
+const renderCountryDetails = () => {
+  fetchData();
 
-const renderCountryDetails = async () => {
-  const mapCountries = await fetchData();
   // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
   let countryComponents = mapCountries.map((v, i) => {
