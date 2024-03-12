@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const country = params.get("country");
 
-const URL = `https://restcountries.com/v3.1/name/${country}`;
+const URL = `https://restcountries.com/v3.1/name/${country}?fields=name,capital,population,region,flags,nativeName,languages,tld,currencies`;
 
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 

@@ -9,7 +9,9 @@ const body = document.body;
 let isDarkMode = false;
 
 // API endpoint
-const URL = "https://restcountries.com/v3.1/all";
+// const URL = "https://restcountries.com/v3.1/all";
+const filteredEndpoint =
+  "https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags";
 
 let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
 let mapCountries = countriesData;
@@ -21,10 +23,13 @@ const showItem = (v) => {
 
 const fetchData = async () => {
   if (!localStorage.getItem("countriesData")) {
-    const response = await fetch(URL);
+    const response = await fetch(filteredEndpoint);
+
     const data = await response.json();
+    console.log(data);
     countriesData = data;
     localStorage.setItem("countriesData", JSON.stringify(data));
+    location.reload();
   } else {
     return;
   }
