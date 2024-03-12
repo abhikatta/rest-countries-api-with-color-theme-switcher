@@ -34,61 +34,125 @@ const fetchData = async () => {
   }
 };
 const renderCountryDetails = () => {
+  const searchValue = searchElement.value;
   fetchData();
 
   // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
-  let countryComponents = mapCountries.map((v, i) => {
-    // main div
-    let itemDiv = document.createElement("div");
-    itemDiv.className = "item";
-    itemDiv.id = "item";
-    itemDiv.addEventListener("click", () => showItem(v));
+  let countryComponents;
+  if (!searchElement.value) {
+    countryComponents = mapCountries.map((v, i) => {
+      // main div
+      let itemDiv = document.createElement("div");
+      itemDiv.className = "item";
+      itemDiv.id = "item";
+      itemDiv.addEventListener("click", () => showItem(v));
 
-    // flag
-    let flag = document.createElement("img");
-    flag.src = v.flags.png;
-    flag.alt = v.flags.alt;
+      // flag
+      let flag = document.createElement("img");
+      flag.src = v.flags.png;
+      flag.alt = v.flags.alt;
 
-    // title
-    let title = document.createElement("p");
-    title.className = "country-title";
-    let titleText = document.createTextNode(v.name.common);
-    title.appendChild(titleText);
+      // title
+      let title = document.createElement("p");
+      title.className = "country-title";
+      let titleText = document.createTextNode(v.name.common);
+      title.appendChild(titleText);
 
-    // population
-    let population = document.createElement("p");
-    population.className = "country-population";
-    let populationText = document.createTextNode(
-      `Population: ${v.population || "Unknown"}`
+      // population
+      let population = document.createElement("p");
+      population.className = "country-population";
+      let populationText = document.createTextNode(
+        `Population: ${v.population || "Unknown"}`
+      );
+      population.appendChild(populationText);
+
+      // region
+      let region = document.createElement("p");
+      region.className = "country-region";
+      let regionText = document.createTextNode(
+        `Region: ${v.region || "Unknown"}`
+      );
+      region.appendChild(regionText);
+
+      // capital
+      let capital = document.createElement("p");
+      capital.className = "country-capital";
+      let capitalText = document.createTextNode(
+        `Capital: ${v.capital || "Unknown"}`
+      );
+      capital.appendChild(capitalText);
+
+      // dark mode:
+      if (isDarkMode) {
+        itemDiv.classList.add("darkMode-item");
+      }
+
+      // appending all together:
+      itemDiv.append(flag, title, population, region, capital);
+      return itemDiv;
+    });
+  } else {
+    let newMapCountries = mapCountries.filter((v) =>
+      v.name.common
+        .toLowerCase()
+        .trim()
+        .includes(searchValue.toLowerCase().trim())
     );
-    population.appendChild(populationText);
+    console.log(newMapCountries);
+    countryComponents = newMapCountries.map((v, i) => {
+      // main div
+      let itemDiv = document.createElement("div");
+      itemDiv.className = "item";
+      itemDiv.id = "item";
+      itemDiv.addEventListener("click", () => showItem(v));
 
-    // region
-    let region = document.createElement("p");
-    region.className = "country-region";
-    let regionText = document.createTextNode(
-      `Region: ${v.region || "Unknown"}`
-    );
-    region.appendChild(regionText);
+      // flag
+      let flag = document.createElement("img");
+      flag.src = v.flags.png;
+      flag.alt = v.flags.alt;
 
-    // capital
-    let capital = document.createElement("p");
-    capital.className = "country-capital";
-    let capitalText = document.createTextNode(
-      `Capital: ${v.capital || "Unknown"}`
-    );
-    capital.appendChild(capitalText);
+      // title
+      let title = document.createElement("p");
+      title.className = "country-title";
+      let titleText = document.createTextNode(v.name.common);
+      title.appendChild(titleText);
 
-    // dark mode:
-    if (isDarkMode) {
-      itemDiv.classList.add("darkMode-item");
-    }
+      // population
+      let population = document.createElement("p");
+      population.className = "country-population";
+      let populationText = document.createTextNode(
+        `Population: ${v.population || "Unknown"}`
+      );
+      population.appendChild(populationText);
 
-    // appending all together:
-    itemDiv.append(flag, title, population, region, capital);
-    return itemDiv;
-  });
+      // region
+      let region = document.createElement("p");
+      region.className = "country-region";
+      let regionText = document.createTextNode(
+        `Region: ${v.region || "Unknown"}`
+      );
+      region.appendChild(regionText);
+
+      // capital
+      let capital = document.createElement("p");
+      capital.className = "country-capital";
+      let capitalText = document.createTextNode(
+        `Capital: ${v.capital || "Unknown"}`
+      );
+      capital.appendChild(capitalText);
+
+      // dark mode:
+      if (isDarkMode) {
+        itemDiv.classList.add("darkMode-item");
+      }
+
+      // appending all together:
+      itemDiv.append(flag, title, population, region, capital);
+      return itemDiv;
+    });
+  }
+
   // appending each country component to item container
   countryComponents.map((v) => {
     itemContainerElement.append(v);

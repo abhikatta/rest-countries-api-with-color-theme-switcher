@@ -153,6 +153,7 @@ nav {
   width: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 .darkMode-item {
@@ -167,10 +168,10 @@ nav {
 }
 .border-countries-container {
   display: flex;
-  padding: 1rem 2rem;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+
+  max-width: 60rem;
 }
 .border-countries-container > p {
   margin-left: 1rem;
@@ -195,7 +196,7 @@ nav {
     padding-left: 2rem;
   }
   .flag-detailed {
-    width: 105%;
+    width: 100%;
   }
   .item-container {
     align-items: center;
@@ -219,5 +220,18 @@ nav {
   }
   .input-search {
     max-width: 18rem;
+  }
+  .border-countries-container {
+    display: flex;
+    /* grid-template-columns: repeat(3, 0.1fr);  */
+    flex-direction: column;
+    padding-left: 0;
+    width: auto;
+    height: auto;
+  }
+
+  .border-countries-container > p {
+    margin: 0.2rem;
+    width: fit-content;
   }
 }

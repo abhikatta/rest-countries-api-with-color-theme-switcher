@@ -145,30 +145,37 @@ const showItem = (v) => {
   let detailedBorderCountriesContainer = document.createElement("div");
   detailedBorderCountriesContainer.className = "border-countries-container";
   detailedBorderCountriesContainer.appendChild(
-    document.createTextNode("Border Countries: ")
+    document
+      .createElement("p")
+      .appendChild(document.createTextNode("Border Countries: "))
   );
 
   // for each border country, the following is :
   // getting the name from borderCountryLookup function
   // creating a p element with on click event listener to go to the clicked country
   // appending them to the container
-  v.borders.map((border) => {
-    let detailedBorderCountriesString = borderCountryLookup(border);
-    if (detailedBorderCountriesString !== null) {
-      let borderCountryComponent = document.createElement("p");
-      //  borderCountryComponent.className = " border-country";
-      let borderCountryText = document.createTextNode(
-        detailedBorderCountriesString
+  v.borders
+    ? v.borders.map((border) => {
+        let detailedBorderCountriesString = borderCountryLookup(border);
+        if (detailedBorderCountriesString !== null) {
+          let borderCountryComponent = document.createElement("p");
+          //  borderCountryComponent.className = " border-country";
+          let borderCountryText = document.createTextNode(
+            detailedBorderCountriesString
+          );
+          borderCountryComponent.addEventListener("click", () => {
+            const newUrl = `/detail/country.html?country=${detailedBorderCountriesString}`;
+            window.location.href = newUrl;
+          });
+          borderCountryComponent.appendChild(borderCountryText);
+          detailedBorderCountriesContainer.append(borderCountryComponent);
+        }
+      })
+    : detailedBorderCountriesContainer.append(
+        document
+          .createElement("p")
+          .appendChild(document.createTextNode("Unknown"))
       );
-      borderCountryComponent.addEventListener("click", () => {
-        const newUrl = `/detail/country.html?country=${detailedBorderCountriesString}`;
-        window.location.href = newUrl;
-      });
-      borderCountryComponent.appendChild(borderCountryText);
-      detailedBorderCountriesContainer.append(borderCountryComponent);
-    }
-  });
-
   // back button
   let backButton = document.createElement("button");
   backButton.className = "back-button";
@@ -177,7 +184,7 @@ const showItem = (v) => {
   let backButtonText = document.createTextNode("Back");
   backButton.appendChild(backButtonText);
   backButton.addEventListener("click", () => {
-    location.href = window.location.origin;
+    window.history.back();
   });
   // appending elements according to layout:
   detailedDiv.append(backButton, mainDivDetailed);
