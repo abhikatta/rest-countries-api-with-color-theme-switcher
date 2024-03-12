@@ -1,6 +1,10 @@
-const URL = `https://restcountries.com/v3.1/all/`;
-let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
+const params = new URLSearchParams(window.location.search);
+const country = params.get("country");
+
+const URL = `https://restcountries.com/v3.1/name/${country}`;
+
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
+
 const showItem = (v) => {
   const itemContainerElement = document.getElementById("item-container");
   //   main div:
@@ -72,8 +76,8 @@ const showItem = (v) => {
   // top level domain
   let detailedTopLevelDomain = document.createElement("p");
   let topLevelDomainString = "";
-  v.topLevelDomain
-    ? v.topLevelDomain.map((v, i) => {
+  v.tld
+    ? v.tld.map((v) => {
         topLevelDomainString += v + ", ";
       })
     : (topLevelDomainString = "Unknown");
@@ -111,14 +115,11 @@ const showItem = (v) => {
   let backButton = document.createElement("button");
   backButton.className = "back-button";
   backButton.id = "back-button";
-  //   if (isDarkMode) {
-  //     backButton.classList.add("darkMode-item");
-  //   }
+
   let backButtonText = document.createTextNode("Back");
   backButton.appendChild(backButtonText);
   backButton.addEventListener("click", () => {
     location.href = window.location.origin;
-    // itemContainerElement.remove(detailedDiv);
   });
   // appending elements according to layout:
   detailedDiv.append(backButton, mainDivDetailed);
@@ -134,20 +135,21 @@ const showItem = (v) => {
     detailedCurrencies,
     detailedLanguages
   );
-  // append main div to item-container and render :)
+
   itemContainerElement.append(detailedDiv);
 };
 
-const renderDetailedView = () => {
-  const params = new URLSearchParams(window.location.search);
-  const country = params.get("country");
+const fetchCountryData = async () => {
+  const response = await fetch(URL);
+  countryData = await response.json();
+};
 
-  const countryObject = countriesData.find(
-    (currentCountry) => currentCountry.name.common === country
-  );
-
-  if (countryObject) {
-    showItem(countryObject);
+const renderDetailedView = async () => {
+  try {
+    await fetchCountryData();
+    showItem(countryData[0]);
+  } catch (error) {
+    console.error(error);
   }
 };
 window.addEventListener("load", renderDetailedView);

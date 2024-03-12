@@ -8,42 +8,27 @@ const darkModeButton = document.getElementById("darkmode-button");
 const body = document.body;
 let isDarkMode = false;
 
-// const URL = "https://restcountries.com/v3.1/name/";
-
-const LOCAL_JSON_DATA_FILE = "./data.json";
-
-let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
-let mapCountries = countriesData;
+// API endpoint
+const URL = "https://restcountries.com/v3.1/all";
 
 const showItem = (v) => {
   const newUrl = `/detail/country.html?country=${v.name.common}`;
   window.location.href = newUrl;
 };
 
-const fetchData = () => {
-  fetch(LOCAL_JSON_DATA_FILE)
-    .then((response) => response.json())
-    .then((data) => {
-      if (localStorage.getItem("countriesData") === null) {
-        countriesData = localStorage.setItem(
-          "countriesData",
-          JSON.stringify(data)
-        );
-        countriesData = data;
-      } else {
-      }
-    })
-    .catch((error) => {
-      let errorElement = document.createElement("h1");
-      errorElement.appendChild(
-        document.createTextNode(`Something Went Wrong:\n${error.message}`)
-      );
-      body.append(errorElement);
-    });
+const fetchData = async () => {
+  try {
+    const data = await fetch(URL);
+    const countriesData = data.json();
+    return countriesData;
+  } catch (error) {
+    console.log(error);
+    console.log("fetching");
+  }
 };
 
-const renderCountryDetails = () => {
-  fetchData();
+const renderCountryDetails = async () => {
+  const mapCountries = await fetchData();
   // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
   let countryComponents = mapCountries.map((v, i) => {
