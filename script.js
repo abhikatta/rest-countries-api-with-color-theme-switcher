@@ -13,7 +13,7 @@ const filteredEndpoint =
   "https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags";
 
 let countriesData = JSON.parse(localStorage.getItem("countriesData")) || [];
-let mapCountries = countriesData;
+let mapCountries = JSON.parse(JSON.stringify(countriesData));
 
 const showItem = (v) => {
   const newUrl = `/detail/country.html?country=${v.name.common}`;
@@ -33,65 +33,69 @@ const fetchData = async () => {
     return;
   }
 };
+const buildCountryComponents = (countries) => {
+  return countries.map((v, i) => {
+    // main div
+    let itemDiv = document.createElement("div");
+    itemDiv.className = "item";
+    itemDiv.id = "item";
+    itemDiv.addEventListener("click", () => showItem(v));
+
+    // flag
+    let flag = document.createElement("img");
+    flag.src = v.flags.png;
+    flag.alt = v.flags.alt;
+
+    // title
+    let title = document.createElement("p");
+    title.className = "country-title";
+    let titleText = document.createTextNode(v.name.common);
+    title.appendChild(titleText);
+
+    // population
+    let population = document.createElement("p");
+    population.className = "country-population";
+    let populationText = document.createTextNode(
+      `Population: ${v.population || "Unknown"}`
+    );
+    population.appendChild(populationText);
+
+    // region
+    let region = document.createElement("p");
+    region.className = "country-region";
+    let regionText = document.createTextNode(
+      `Region: ${v.region || "Unknown"}`
+    );
+    region.appendChild(regionText);
+
+    // capital
+    let capital = document.createElement("p");
+    capital.className = "country-capital";
+    let capitalText = document.createTextNode(
+      `Capital: ${v.capital || "Unknown"}`
+    );
+    capital.appendChild(capitalText);
+
+    // dark mode:
+    if (isDarkMode) {
+      itemDiv.classList.add("darkMode-item");
+    }
+
+    // appending all together:
+    itemDiv.append(flag, title, population, region, capital);
+    return itemDiv;
+  });
+};
 const renderCountryDetails = () => {
   const searchValue = searchElement.value;
   fetchData();
-
   // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
   let countryComponents;
-  if (!searchElement.value) {
-    countryComponents = mapCountries.map((v, i) => {
-      // main div
-      let itemDiv = document.createElement("div");
-      itemDiv.className = "item";
-      itemDiv.id = "item";
-      itemDiv.addEventListener("click", () => showItem(v));
-
-      // flag
-      let flag = document.createElement("img");
-      flag.src = v.flags.png;
-      flag.alt = v.flags.alt;
-
-      // title
-      let title = document.createElement("p");
-      title.className = "country-title";
-      let titleText = document.createTextNode(v.name.common);
-      title.appendChild(titleText);
-
-      // population
-      let population = document.createElement("p");
-      population.className = "country-population";
-      let populationText = document.createTextNode(
-        `Population: ${v.population || "Unknown"}`
-      );
-      population.appendChild(populationText);
-
-      // region
-      let region = document.createElement("p");
-      region.className = "country-region";
-      let regionText = document.createTextNode(
-        `Region: ${v.region || "Unknown"}`
-      );
-      region.appendChild(regionText);
-
-      // capital
-      let capital = document.createElement("p");
-      capital.className = "country-capital";
-      let capitalText = document.createTextNode(
-        `Capital: ${v.capital || "Unknown"}`
-      );
-      capital.appendChild(capitalText);
-
-      // dark mode:
-      if (isDarkMode) {
-        itemDiv.classList.add("darkMode-item");
-      }
-
-      // appending all together:
-      itemDiv.append(flag, title, population, region, capital);
-      return itemDiv;
-    });
+  // this looks for any input in the search input element and if there is any value in search, it
+  // will render a list of filtered data of that search input value, else the whole list
+  if (!searchValue) {
+    countryComponents = buildCountryComponents(mapCountries);
   } else {
     let newMapCountries = mapCountries.filter((v) =>
       v.name.common
@@ -99,60 +103,8 @@ const renderCountryDetails = () => {
         .trim()
         .includes(searchValue.toLowerCase().trim())
     );
-    console.log(newMapCountries);
-    countryComponents = newMapCountries.map((v, i) => {
-      // main div
-      let itemDiv = document.createElement("div");
-      itemDiv.className = "item";
-      itemDiv.id = "item";
-      itemDiv.addEventListener("click", () => showItem(v));
-
-      // flag
-      let flag = document.createElement("img");
-      flag.src = v.flags.png;
-      flag.alt = v.flags.alt;
-
-      // title
-      let title = document.createElement("p");
-      title.className = "country-title";
-      let titleText = document.createTextNode(v.name.common);
-      title.appendChild(titleText);
-
-      // population
-      let population = document.createElement("p");
-      population.className = "country-population";
-      let populationText = document.createTextNode(
-        `Population: ${v.population || "Unknown"}`
-      );
-      population.appendChild(populationText);
-
-      // region
-      let region = document.createElement("p");
-      region.className = "country-region";
-      let regionText = document.createTextNode(
-        `Region: ${v.region || "Unknown"}`
-      );
-      region.appendChild(regionText);
-
-      // capital
-      let capital = document.createElement("p");
-      capital.className = "country-capital";
-      let capitalText = document.createTextNode(
-        `Capital: ${v.capital || "Unknown"}`
-      );
-      capital.appendChild(capitalText);
-
-      // dark mode:
-      if (isDarkMode) {
-        itemDiv.classList.add("darkMode-item");
-      }
-
-      // appending all together:
-      itemDiv.append(flag, title, population, region, capital);
-      return itemDiv;
-    });
+    countryComponents = buildCountryComponents(newMapCountries);
   }
-
   // appending each country component to item container
   countryComponents.map((v) => {
     itemContainerElement.append(v);

@@ -1,8 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const country = params.get("country");
-const border = params.get("codes");
-let URL = "";
-URL = `https://restcountries.com/v3.1/name/${country}?fullText=true`;
+const URL = `https://restcountries.com/v3.1/name/${country}?fullText=true`;
 const LOOK_UP_URL = "https://restcountries.com/v3.1/all?fields=name,cca3";
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 let lookUpData = JSON.parse(localStorage.getItem("lookUpData")) || [];
