@@ -161,7 +161,7 @@ const showItem = (v) => {
         detailedBorderCountriesString
       );
       borderCountryComponent.addEventListener("click", () => {
-        const newUrl = `/detail/country.html?country=${v.name.common}`;
+        const newUrl = `/detail/country.html?country=${detailedBorderCountriesString}`;
         window.location.href = newUrl;
       });
       borderCountryComponent.appendChild(borderCountryText);
