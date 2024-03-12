@@ -33,6 +33,7 @@ const fetchData = async () => {
     return;
   }
 };
+
 const buildCountryComponents = (countries) => {
   return countries.map((v, i) => {
     // main div
@@ -88,6 +89,8 @@ const buildCountryComponents = (countries) => {
 };
 const renderCountryDetails = () => {
   const searchValue = searchElement.value;
+  const filterValue = filterElement.value;
+  console.log(filterValue);
   fetchData();
   // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
@@ -96,13 +99,33 @@ const renderCountryDetails = () => {
   // will render a list of filtered data of that search input value, else the whole list
   if (!searchValue) {
     countryComponents = buildCountryComponents(mapCountries);
-  } else {
+  }
+  if (searchValue) {
     let newMapCountries = mapCountries.filter((v) =>
       v.name.common
         .toLowerCase()
         .trim()
         .includes(searchValue.toLowerCase().trim())
     );
+    countryComponents = buildCountryComponents(newMapCountries);
+  }
+  if (filterValue && filterValue !== "Filter by Region") {
+    let newMapCountries;
+    if (searchValue) {
+      newMapCountries = mapCountries.filter(
+        (v) =>
+          v.region
+            .toLowerCase()
+            .trim()
+            .includes(filterValue.toLowerCase().trim()) &&
+          v.name.common
+            .toLowerCase()
+            .trim()
+            .includes(searchValue.toLowerCase().trim())
+      );
+    } else {
+      newMapCountries = mapCountries;
+    }
     countryComponents = buildCountryComponents(newMapCountries);
   }
   // appending each country component to item container
