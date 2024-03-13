@@ -169,6 +169,7 @@ const showItem = (v) => {
         if (detailedBorderCountriesString !== null) {
           let borderCountryComponent = document.createElement("p");
           borderCountryComponent.id = "border-country";
+          borderCountryComponent.className = "border-country";
 
           if (isDarkMode) {
             borderCountryComponent.classList.add("darkMode-item");
