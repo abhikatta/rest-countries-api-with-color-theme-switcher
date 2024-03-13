@@ -30,7 +30,7 @@ const fetchData = async () => {
     const response = await fetch(filteredEndpoint);
 
     const data = await response.json();
-    console.log(data);
+
     countriesData = data;
     localStorage.setItem("countriesData", JSON.stringify(data));
     location.reload();
@@ -96,7 +96,7 @@ const buildCountryComponents = (countries) => {
 const renderCountryDetails = () => {
   const searchValue = searchElement.value;
   const filterValue = filterElement.value;
-  console.log(filterValue);
+
   fetchData();
   // basically this line replaces every child with 'null' when coming back from detailed view
   itemContainerElement.replaceChildren();
@@ -142,7 +142,7 @@ const renderCountryDetails = () => {
 
 const checkDarkmode = () => {
   const items = document.querySelectorAll(".item");
-  console.log(isDarkMode);
+
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.add("darkMode-item");
@@ -182,7 +182,6 @@ const darkMode = () => {
   isDarkMode = !isDarkMode;
   localStorage.setItem("isDarkMode", isDarkMode);
 
-  console.log(isDarkMode);
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.add("darkMode-item");

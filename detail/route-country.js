@@ -150,23 +150,25 @@ const showItem = (v) => {
 
   // border countries
   let detailedBorderCountriesContainer = document.createElement("div");
-  detailedBorderCountriesContainer.className = "border-countries-container";
-  detailedBorderCountriesContainer.appendChild(
-    document
-      .createElement("p")
-      .appendChild(document.createTextNode("Border Countries: "))
+  detailedBorderCountriesContainer.className = " border-countries-container";
+  let borderCountriesLabel = document.createElement("p");
+  borderCountriesLabel.appendChild(
+    document.createTextNode("Border Countries: ")
   );
+  detailedBorderCountriesContainer.appendChild(borderCountriesLabel);
 
   // for each border country, the following is :
   // getting the name from borderCountryLookup function
   // creating a p element with on click event listener to go to the clicked country
   // appending them to the container
+  let detailedBorderCountries = document.createElement("div");
+  detailedBorderCountries.className = "countries-container";
   v.borders
     ? v.borders.map((border) => {
         let detailedBorderCountriesString = borderCountryLookup(border);
         if (detailedBorderCountriesString !== null) {
           let borderCountryComponent = document.createElement("p");
-          borderCountryComponent.className = "border-country";
+          borderCountryComponent.id = "border-country";
 
           if (isDarkMode) {
             borderCountryComponent.classList.add("darkMode-item");
@@ -182,8 +184,9 @@ const showItem = (v) => {
             window.location.href = newUrl;
           });
           borderCountryComponent.appendChild(borderCountryText);
-          detailedBorderCountriesContainer.append(borderCountryComponent);
+          detailedBorderCountries.append(borderCountryComponent);
         }
+        detailedBorderCountriesContainer.appendChild(detailedBorderCountries);
       })
     : detailedBorderCountriesContainer.append(
         document
@@ -256,7 +259,7 @@ const darkMode = () => {
 
   const backButton = document.getElementById("back-button");
   const nav = document.querySelector("nav");
-  const borderCountries = document.querySelectorAll(".border-country");
+  const borderCountries = document.querySelectorAll("#border-country");
 
   if (isDarkMode) {
     nav.classList.add("darkMode-item");
