@@ -9,7 +9,6 @@ const body = document.body;
 const nav = document.querySelector("nav");
 const select = document.querySelector("select");
 const option = document.querySelector("option");
-const searchInput = document.getElementById("search");
 const darkModeButton = document.getElementById("darkmode-button");
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 
@@ -85,6 +84,10 @@ const buildCountryComponents = (countries) => {
     // dark mode:
     if (isDarkMode) {
       itemDiv.classList.add("darkMode-item");
+      searchElement.classList.add("darkMode-item");
+    } else {
+      itemDiv.classList.remove("darkMode-item");
+      searchElement.classList.remove("darkMode-item");
     }
 
     // appending all together:
@@ -155,8 +158,7 @@ const checkDarkmode = () => {
       button.classList.add("darkMode-item");
     }
     option.classList.add("darkMode-item");
-
-    searchInput.classList.add("darkMode-item");
+    searchElement.classList.add("darkMode-item");
     body.classList.add("darkMode-bg");
   } else if (isDarkMode === false) {
     items.forEach((item) => {
@@ -164,14 +166,13 @@ const checkDarkmode = () => {
     });
     nav.classList.remove("darkMode-item");
     darkModeButton.classList.remove("darkMode-item");
+    searchElement.classList.remove("darkMode-item");
 
     select.classList.remove("darkMode-item");
     if (button) {
       button.classList.remove("darkMode-item");
     }
     option.classList.remove("darkMode-item");
-
-    searchInput.classList.remove("darkMode-item");
     body.classList.remove("darkMode-bg");
   }
 };
@@ -195,7 +196,6 @@ const darkMode = () => {
     }
     option.classList.add("darkMode-item");
 
-    searchInput.classList.add("darkMode-item");
     body.classList.add("darkMode-bg");
   } else {
     items.forEach((item) => {
@@ -209,8 +209,6 @@ const darkMode = () => {
       button.classList.remove("darkMode-item");
     }
     option.classList.remove("darkMode-item");
-
-    searchInput.classList.remove("darkMode-item");
     body.classList.remove("darkMode-bg");
   }
 };
