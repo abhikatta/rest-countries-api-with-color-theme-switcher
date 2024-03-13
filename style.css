@@ -245,9 +245,15 @@ nav {
     max-width: 18rem;
   }
   .countries-container {
-    display: flex;
-    flex-direction: row;
-    padding-left: 0;
+    /* display: flex;
+
+    flex-direction: row; */
+    display: grid;
+    grid-template-columns: repeat(3, 0.7fr);
+    width: auto;
+    align-items: flex-start;
+    padding: 0;
+    margin-left: 0;
     width: auto;
     height: auto;
   }
@@ -255,9 +261,9 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: self-start;
+    width: min-content;
   }
   .border-country {
     padding: 1rem 2rem;
-    width: auto;
   }
 }
