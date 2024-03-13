@@ -121,11 +121,13 @@ nav {
 /* all have -detailed at end to original classnames */
 .item-detailed {
   display: flex;
-  margin-left: 4rem;
+  width: auto;
+  height: auto;
   flex-direction: column;
+  justify-content: center;
+  align-items: self-start;
   padding-left: 2rem;
   padding-right: 2rem;
-  max-height: 10rem;
 }
 .back-button {
   background-color: var(--white);
@@ -173,10 +175,11 @@ nav {
   color: var(--white);
 }
 .darkMode-bg {
-  background-color: hsl(207, 26%, 17%);
+  background-color: var(--very-dark-blue-bg);
   box-shadow: none;
-  color: hsl(0, 0%, 100%);
+  color: var(--white);
 }
+
 .border-countries-container {
   display: flex;
   flex-direction: row;
@@ -187,7 +190,7 @@ nav {
 .border-countries-container > p {
   margin-left: 1rem;
   margin-right: 1rem;
-  background-color: var(--white);
+
   padding: 0.4rem 1rem;
 }
 .border-countries-container > p:hover {

@@ -2,8 +2,16 @@ const params = new URLSearchParams(window.location.search);
 const country = params.get("country");
 const URL = `https://restcountries.com/v3.1/name/${country}?fullText=true`;
 const LOOK_UP_URL = "https://restcountries.com/v3.1/all?fields=name,cca3";
-let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 let lookUpData = JSON.parse(localStorage.getItem("lookUpData")) || [];
+
+// dark-theme-related
+const body = document.body;
+const nav = document.querySelector("nav");
+const darkModeButton = document.getElementById("darkmode-button");
+const itemContainerElement = document.getElementById("item-container");
+
+let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"));
+// let isDarkMode = false;
 const fetchLookUpData = async () => {
   if (localStorage.getItem("lookUpData")) {
     return;
@@ -32,11 +40,12 @@ const borderCountryLookup = (v) => {
 };
 
 const showItem = (v) => {
-  const itemContainerElement = document.getElementById("item-container");
   //   main div:
   //   the first vertical row:
   let detailedDiv = document.createElement("div");
   detailedDiv.className = "item-detailed";
+  detailedDiv.id = "main-detailed";
+
   // main div:
   // has flag + data (row)
   let mainDivDetailed = document.createElement("div");
@@ -157,7 +166,14 @@ const showItem = (v) => {
         let detailedBorderCountriesString = borderCountryLookup(border);
         if (detailedBorderCountriesString !== null) {
           let borderCountryComponent = document.createElement("p");
-          //  borderCountryComponent.className = " border-country";
+          borderCountryComponent.className = "border-country";
+
+          if (isDarkMode) {
+            borderCountryComponent.classList.add("darkMode-item");
+          } else if (!isDarkMode) {
+            borderCountryComponent.classList.remove("darkMode-item");
+          }
+
           let borderCountryText = document.createTextNode(
             detailedBorderCountriesString
           );
@@ -184,6 +200,18 @@ const showItem = (v) => {
   backButton.addEventListener("click", () => {
     window.history.back();
   });
+
+  if (isDarkMode) {
+    body.classList.add("darkMode-bg");
+    backButton.classList.add("darkMode-item");
+    nav.classList.add("darkMode-item");
+    darkModeButton.classList.add("darkMode-bg");
+  } else {
+    body.classList.remove("darkMode-bg");
+    backButton.classList.remove("darkMode-item");
+    nav.classList.remove("darkMode-item");
+    darkModeButton.classList.remove("darkMode-bg");
+  }
   // appending elements according to layout:
   detailedDiv.append(backButton, mainDivDetailed);
   mainDivDetailed.append(detailedFlag, mainDataDivDetailed);
@@ -221,4 +249,36 @@ const renderDetailedView = async () => {
     console.error(error);
   }
 };
-window.addEventListener("load", renderDetailedView);
+
+const darkMode = () => {
+  isDarkMode = !isDarkMode;
+  localStorage.setItem("isDarkMode", isDarkMode);
+
+  const backButton = document.getElementById("back-button");
+  const nav = document.querySelector("nav");
+  const borderCountries = document.querySelectorAll(".border-country");
+
+  if (isDarkMode) {
+    nav.classList.add("darkMode-item");
+    darkModeButton.classList.add("darkMode-bg");
+    body.classList.add("darkMode-bg");
+    backButton.classList.add("darkMode-item");
+
+    borderCountries.forEach((borderCountry) => {
+      borderCountry.classList.add("darkMode-item");
+      console.log(borderCountry);
+    });
+  } else if (isDarkMode === false) {
+    nav.classList.remove("darkMode-item");
+    darkModeButton.classList.remove("darkMode-bg");
+    body.classList.remove("darkMode-bg");
+    backButton.classList.remove("darkMode-item");
+
+    borderCountries.forEach((borderCountry) => {
+      borderCountry.classList.remove("darkMode-item");
+    });
+  }
+};
+window.addEventListener("load", () => {
+  renderDetailedView();
+});

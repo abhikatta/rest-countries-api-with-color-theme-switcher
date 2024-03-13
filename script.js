@@ -4,8 +4,6 @@ const searchElement = document.getElementById("search");
 const filterElement = document.getElementById("filter");
 
 // theme-related:
-
-const items = document.querySelectorAll(".item");
 const button = document.getElementById("back-button");
 const body = document.body;
 const nav = document.querySelector("nav");
@@ -13,13 +11,7 @@ const select = document.querySelector("select");
 const option = document.querySelector("option");
 const searchInput = document.getElementById("search");
 const darkModeButton = document.getElementById("darkmode-button");
-
-//
-
-// let isDarkMode = localStorage.getItem("isDarkMode") || false;
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
-
-// let isDarkMode = false;
 
 // API endpoint
 const filteredEndpoint =
@@ -149,6 +141,7 @@ const renderCountryDetails = () => {
 };
 
 const checkDarkmode = () => {
+  const items = document.querySelectorAll(".item");
   console.log(isDarkMode);
   if (isDarkMode) {
     items.forEach((item) => {
@@ -185,25 +178,12 @@ const checkDarkmode = () => {
 
 const darkMode = () => {
   const items = document.querySelectorAll(".item");
-  const button = document.getElementById("back-button");
-  const body = document.body;
-  const nav = document.querySelector("nav");
-  const select = document.querySelector("select");
-  const option = document.querySelector("option");
-  const searchInput = document.getElementById("search");
-  const darkModeButton = document.getElementById("darkmode-button");
-  if (isDarkMode) {
-    isDarkMode = false;
-    localStorage.setItem("isDarkMode", false);
-  } else if (isDarkMode === false) {
-    isDarkMode = true;
-    localStorage.setItem("isDarkMode", true);
-  }
+
+  isDarkMode = !isDarkMode;
+  localStorage.setItem("isDarkMode", isDarkMode);
 
   console.log(isDarkMode);
   if (isDarkMode) {
-    // isDarkMode = false;
-    //  localStorage.setItem("isDarkMode", false);
     items.forEach((item) => {
       item.classList.add("darkMode-item");
     });
@@ -219,8 +199,6 @@ const darkMode = () => {
     searchInput.classList.add("darkMode-item");
     body.classList.add("darkMode-bg");
   } else {
-    // isDarkMode = true;
-    // localStorage.setItem("isDarkMode", true);
     items.forEach((item) => {
       item.classList.remove("darkMode-item");
     });
@@ -240,9 +218,7 @@ const darkMode = () => {
 
 const search = () => {
   const searchValue = searchElement.value;
-
   mapCountries = countriesData;
-
   mapCountries = mapCountries.filter((v) =>
     v.name.common
       .toLowerCase()
@@ -255,7 +231,6 @@ const search = () => {
 
 const filter = () => {
   const filterValue = filterElement.value;
-
   mapCountries = countriesData;
   mapCountries = mapCountries.filter((v) => {
     return v.region.toLowerCase().trim().includes(filterValue.toLowerCase());
