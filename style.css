@@ -189,16 +189,8 @@ nav {
   flex-direction: row;
   justify-content: space-evenly;
   max-width: 60rem;
-  overflow: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
-  /* display: grid;
-  grid-template-columns: repeat(3, 0.7fr);
-  width: auto;
-  align-items: flex-start;
-  padding: 0;
-  margin-left: 0;
-  width: auto;
-  height: auto; */
 }
 .countries-container > p {
   margin-left: 1rem;
