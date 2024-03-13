@@ -4,9 +4,22 @@ const searchElement = document.getElementById("search");
 const filterElement = document.getElementById("filter");
 
 // theme-related:
-const darkModeButton = document.getElementById("darkmode-button");
+
+const items = document.querySelectorAll(".item");
+const button = document.getElementById("back-button");
 const body = document.body;
-let isDarkMode = false;
+const nav = document.querySelector("nav");
+const select = document.querySelector("select");
+const option = document.querySelector("option");
+const searchInput = document.getElementById("search");
+const darkModeButton = document.getElementById("darkmode-button");
+
+//
+
+// let isDarkMode = localStorage.getItem("isDarkMode") || false;
+let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
+
+// let isDarkMode = false;
 
 // API endpoint
 const filteredEndpoint =
@@ -87,6 +100,7 @@ const buildCountryComponents = (countries) => {
     return itemDiv;
   });
 };
+
 const renderCountryDetails = () => {
   const searchValue = searchElement.value;
   const filterValue = filterElement.value;
@@ -133,24 +147,9 @@ const renderCountryDetails = () => {
     itemContainerElement.append(v);
   });
 };
-// event listeners:
-window.addEventListener("load", renderCountryDetails);
 
-const darkMode = () => {
-  const items = document.querySelectorAll(".item");
-  const button = document.getElementById("back-button");
-  const body = document.body;
-  const nav = document.querySelector("nav");
-  const select = document.querySelector("select");
-  const option = document.querySelector("option");
-  const searchInput = document.getElementById("search");
-  const darkModeButton = document.getElementById("darkmode-button");
-  if (isDarkMode) {
-    isDarkMode = false;
-  } else if (!isDarkMode) {
-    isDarkMode = true;
-  }
-
+const checkDarkmode = () => {
+  console.log(isDarkMode);
   if (isDarkMode) {
     items.forEach((item) => {
       item.classList.add("darkMode-item");
@@ -166,7 +165,7 @@ const darkMode = () => {
 
     searchInput.classList.add("darkMode-item");
     body.classList.add("darkMode-bg");
-  } else if (!isDarkMode) {
+  } else if (isDarkMode === false) {
     items.forEach((item) => {
       item.classList.remove("darkMode-item");
     });
@@ -183,6 +182,62 @@ const darkMode = () => {
     body.classList.remove("darkMode-bg");
   }
 };
+
+const darkMode = () => {
+  const items = document.querySelectorAll(".item");
+  const button = document.getElementById("back-button");
+  const body = document.body;
+  const nav = document.querySelector("nav");
+  const select = document.querySelector("select");
+  const option = document.querySelector("option");
+  const searchInput = document.getElementById("search");
+  const darkModeButton = document.getElementById("darkmode-button");
+  if (isDarkMode) {
+    isDarkMode = false;
+    localStorage.setItem("isDarkMode", false);
+  } else if (isDarkMode === false) {
+    isDarkMode = true;
+    localStorage.setItem("isDarkMode", true);
+  }
+
+  console.log(isDarkMode);
+  if (isDarkMode) {
+    // isDarkMode = false;
+    //  localStorage.setItem("isDarkMode", false);
+    items.forEach((item) => {
+      item.classList.add("darkMode-item");
+    });
+    nav.classList.add("darkMode-item");
+    darkModeButton.classList.add("darkMode-item");
+
+    select.classList.add("darkMode-item");
+    if (button) {
+      button.classList.add("darkMode-item");
+    }
+    option.classList.add("darkMode-item");
+
+    searchInput.classList.add("darkMode-item");
+    body.classList.add("darkMode-bg");
+  } else {
+    // isDarkMode = true;
+    // localStorage.setItem("isDarkMode", true);
+    items.forEach((item) => {
+      item.classList.remove("darkMode-item");
+    });
+    nav.classList.remove("darkMode-item");
+    darkModeButton.classList.remove("darkMode-item");
+
+    select.classList.remove("darkMode-item");
+    if (button) {
+      button.classList.remove("darkMode-item");
+    }
+    option.classList.remove("darkMode-item");
+
+    searchInput.classList.remove("darkMode-item");
+    body.classList.remove("darkMode-bg");
+  }
+};
+
 const search = () => {
   const searchValue = searchElement.value;
 
@@ -208,3 +263,13 @@ const filter = () => {
 
   renderCountryDetails();
 };
+
+// event listeners:
+// window.addEventListener("load", renderCountryDetails);
+
+window.addEventListener("load", () => {
+  // check the dark mode value and add or remove the darkmode classes respectively
+  // do this in the morning
+  renderCountryDetails();
+  checkDarkmode();
+});

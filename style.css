@@ -1,17 +1,26 @@
 * {
   font-family: "Nunito Sans";
 }
+:root {
+  --dark-blue: hsl(209, 23%, 22%);
+  --very-dark-blue-bg: hsl(207, 26%, 17%);
+  --very-dark-blue-text: hsl(200, 15%, 8%);
+  --dark-gray: hsl(0, 0%, 52%);
+  --very-light-gray-bg: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: hsl(0, 0%, 96%);
-  color: hsl(200, 15%, 8%);
+  background-color: var(--very-light-gray-bg);
+  color: var(--very-dark-blue-text);
 }
 nav {
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
-  background-color: #fff;
+  background-color: var(--white);
   flex-direction: row;
   height: 2rem;
   justify-content: space-between;
@@ -22,7 +31,8 @@ nav {
 .darkmode-button {
   border: none;
   padding: 0.7rem 2rem;
-
+  background-color: var(--very-light-gray-bg);
+  color: var(--very-dark-blue-text);
   font-weight: 700;
 }
 .query-container {
@@ -70,8 +80,7 @@ nav {
 .item {
   max-width: min-content;
   max-height: auto;
-
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--very-light-gray-bg);
   color: hsl(200, 15%, 8%);
   /* box-shadow: 5px 5px 10px rgb(208, 208, 208); */
 
@@ -119,12 +128,14 @@ nav {
   max-height: 10rem;
 }
 .back-button {
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--white);
   border: none;
   box-shadow: rgb(208, 208, 208) 1px 1px 1000px;
+
   width: max-content;
   margin: 1rem;
   /* for aligning with the div */
+
   margin-left: 6rem;
   padding: 0.3rem 2rem;
 }
@@ -157,9 +168,9 @@ nav {
 }
 
 .darkMode-item {
-  background-color: hsl(209, 23%, 22%);
+  background-color: var(--dark-blue);
   box-shadow: none;
-  color: hsl(0, 0%, 100%);
+  color: var(--white);
 }
 .darkMode-bg {
   background-color: hsl(207, 26%, 17%);
@@ -176,7 +187,7 @@ nav {
 .border-countries-container > p {
   margin-left: 1rem;
   margin-right: 1rem;
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--white);
   padding: 0.4rem 1rem;
 }
 .border-countries-container > p:hover {
