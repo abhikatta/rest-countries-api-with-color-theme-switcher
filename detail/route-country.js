@@ -249,34 +249,22 @@ const renderDetailedView = async () => {
   }
 };
 
+const checkDarkmode = () => {
+  if (isDarkMode) {
+    body.classList.add("darkMode");
+  } else {
+    body.classList.remove("darkMode");
+  }
+};
+
 const darkMode = () => {
   isDarkMode = !isDarkMode;
-  localStorage.setItem("isDarkMode", isDarkMode);
-
-  const backButton = document.getElementById("back-button");
-  const nav = document.querySelector("nav");
-  const borderCountries = document.querySelectorAll("#border-country");
-
   if (isDarkMode) {
-    nav.classList.add("darkMode-item");
-    darkModeButton.classList.add("darkMode-bg");
-    body.classList.add("darkMode-bg");
-    backButton.classList.add("darkMode-item");
-
-    borderCountries.forEach((borderCountry) => {
-      borderCountry.classList.add("darkMode-item");
-      console.log(borderCountry);
-    });
-  } else if (isDarkMode === false) {
-    nav.classList.remove("darkMode-item");
-    darkModeButton.classList.remove("darkMode-bg");
-    body.classList.remove("darkMode-bg");
-    backButton.classList.remove("darkMode-item");
-
-    borderCountries.forEach((borderCountry) => {
-      borderCountry.classList.remove("darkMode-item");
-    });
+    body.classList.add("darkMode");
+  } else {
+    body.classList.remove("darkMode");
   }
+  localStorage.setItem("isDarkMode", isDarkMode);
 };
 window.addEventListener("load", () => {
   renderDetailedView();

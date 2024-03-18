@@ -144,75 +144,22 @@ const renderCountryDetails = () => {
 };
 
 const checkDarkmode = () => {
-  const items = document.querySelectorAll(".item");
-
   if (isDarkMode) {
-    items.forEach((item) => {
-      item.classList.add("darkMode-item");
-    });
-    nav.classList.add("darkMode-item");
-    darkModeButton.classList.add("darkMode-item");
-
-    select.classList.add("darkMode-item");
-    if (button) {
-      button.classList.add("darkMode-item");
-    }
-    option.classList.add("darkMode-item");
-    searchElement.classList.add("darkMode-item");
-    body.classList.add("darkMode-bg");
-  } else if (isDarkMode === false) {
-    items.forEach((item) => {
-      item.classList.remove("darkMode-item");
-    });
-    nav.classList.remove("darkMode-item");
-    darkModeButton.classList.remove("darkMode-item");
-    searchElement.classList.remove("darkMode-item");
-
-    select.classList.remove("darkMode-item");
-    if (button) {
-      button.classList.remove("darkMode-item");
-    }
-    option.classList.remove("darkMode-item");
-    body.classList.remove("darkMode-bg");
+    body.classList.add("darkMode");
+  } else {
+    body.classList.remove("darkMode");
   }
 };
 
 const darkMode = () => {
-  const items = document.querySelectorAll(".item");
-
   isDarkMode = !isDarkMode;
-  localStorage.setItem("isDarkMode", isDarkMode);
-
   if (isDarkMode) {
-    items.forEach((item) => {
-      item.classList.add("darkMode-item");
-    });
-    nav.classList.add("darkMode-item");
-    darkModeButton.classList.add("darkMode-item");
-
-    select.classList.add("darkMode-item");
-    if (button) {
-      button.classList.add("darkMode-item");
-    }
-    option.classList.add("darkMode-item");
-
-    body.classList.add("darkMode-bg");
+    body.classList.add("darkMode");
   } else {
-    items.forEach((item) => {
-      item.classList.remove("darkMode-item");
-    });
-    nav.classList.remove("darkMode-item");
-    darkModeButton.classList.remove("darkMode-item");
-
-    select.classList.remove("darkMode-item");
-    if (button) {
-      button.classList.remove("darkMode-item");
-    }
-    option.classList.remove("darkMode-item");
-    body.classList.remove("darkMode-bg");
+    body.classList.remove("darkMode");
   }
+  localStorage.setItem("isDarkMode", isDarkMode);
 };
-
 const search = () => {
   const searchValue = searchElement.value;
   mapCountries = countriesData;

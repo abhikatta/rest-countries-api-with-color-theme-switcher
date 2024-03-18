@@ -2,25 +2,39 @@
   font-family: "Nunito Sans";
 }
 :root {
-  --dark-blue: hsl(209, 23%, 22%);
+  /* --dark-blue: hsl(209, 23%, 22%);
   --very-dark-blue-bg: hsl(207, 26%, 17%);
   --very-dark-blue-text: hsl(200, 15%, 8%);
   --dark-gray: hsl(0, 0%, 52%);
   --very-light-gray-bg: hsl(0, 0%, 98%);
-  --white: hsl(0, 0%, 100%);
+  --white: hsl(0, 0%, 100%); */
+  --background-body-color: hsl(0, 0%, 98%);
+  --nav-bg: hsl(0, 0%, 100%);
+  --text-color: hsl(200, 15%, 8%);
+  --element-bg: hsl(0, 0%, 100%);
 }
-
+.darkMode {
+  --background-body-color: hsl(207, 26%, 17%);
+  --nav-bg: hsl(209, 23%, 22%);
+  --text-color: hsl(0, 0%, 100%);
+  --element-bg: hsl(209, 23%, 22%);
+}
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--very-light-gray-bg);
-  color: var(--very-dark-blue-text);
+  background-color: var(--background-body-color);
+  color: var(--text-color);
+}
+p,
+h2,
+h3 {
+  color: var(--text-color);
 }
 nav {
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
-  background-color: var(--white);
+  background-color: var(--nav-bg);
   flex-direction: row;
   height: 2rem;
   justify-content: space-between;
@@ -31,9 +45,10 @@ nav {
 .darkmode-button {
   border: none;
   padding: 0.7rem 2rem;
-  background-color: var(--very-light-gray-bg);
-  color: var(--very-dark-blue-text);
+  color: var(--text-color);
   font-weight: 700;
+  background-color: var(--nav-bg);
+  cursor: pointer;
 }
 .query-container {
   display: flex;
@@ -56,8 +71,13 @@ nav {
   background-size: 1rem;
   background-position: 1rem;
   padding: 0.7rem 2rem;
+  background-color: var(--background-body-color);
+  color: var(--text-color);
 }
-
+.filter {
+  background-color: var(--background-body-color);
+  color: var(--text-color);
+}
 ::placeholder {
   opacity: 80%;
   padding-left: 1rem;
@@ -80,15 +100,15 @@ nav {
 .item {
   max-width: min-content;
   max-height: auto;
-  background-color: var(--very-light-gray-bg);
+  background-color: var(--element-bg);
   color: hsl(200, 15%, 8%);
   /* box-shadow: 5px 5px 10px rgb(208, 208, 208); */
 
   transition: 0.4s;
+  cursor: pointer;
   padding-bottom: 1rem;
 }
 .item:hover {
-  cursor: pointer;
   transform: scale(110%);
   /* box-shadow: 5px 5px 40px rgb(208, 208, 208); */
 }
@@ -130,7 +150,7 @@ nav {
   padding-right: 2rem;
 }
 .back-button {
-  background-color: var(--white);
+  background-color: var(--background-body-color);
   border: none;
   box-shadow: rgb(208, 208, 208) 1px 1px 1000px;
 
@@ -169,7 +189,7 @@ nav {
   gap: 1rem;
 }
 
-.darkMode-item {
+/* .darkMode-item {
   background-color: var(--dark-blue);
   box-shadow: none;
   color: var(--white);
@@ -178,7 +198,7 @@ nav {
   background-color: var(--very-dark-blue-bg);
   box-shadow: none;
   color: var(--white);
-}
+} */
 .border-countries-container {
   display: flex;
   flex-direction: row;
