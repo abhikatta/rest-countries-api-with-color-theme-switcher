@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const country = params.get("country");
 const URL = `https://restcountries.com/v3.1/name/${country}?fullText=true`;
 const LOOK_UP_URL = "https://restcountries.com/v3.1/all?fields=name,cca3";
-let lookUpData = JSON.parse(localStorage.getItem("lookUpData")) || [];
+let lookUpData = new Map();
 
 // dark-theme-related
 const body = document.body;
@@ -13,30 +13,33 @@ const itemContainerElement = document.getElementById("item-container");
 let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"));
 // let isDarkMode = false;
 const fetchLookUpData = async () => {
-  if (localStorage.getItem("lookUpData")) {
-    return;
-  } else {
-    try {
-      const response = await fetch(LOOK_UP_URL);
-      lookUpData = await response.json();
-
-      localStorage.setItem("lookUpData", JSON.stringify(lookUpData));
-    } catch (error) {
-      console.log(`something went wrong while fetching lookup data:,${error}`);
-    }
+  try {
+    const response = await fetch(LOOK_UP_URL);
+    const data = await response.json();
+    data.map((lookUpCountry) => {
+      lookUpData.set(lookUpCountry.cca3, lookUpCountry.name.common);
+    });
+    console.log(lookUpData);
+  } catch (error) {
+    console.log(`something went wrong while fetching lookup data:,${error}`);
   }
 };
 
-const borderCountryLookup = (v) => {
+const borderCountryLookup = (countryItem) => {
   // data in countries.json uses cca2, but borders has cca3 format
   // so using the first 2 letters of v, this finds the object(i.e country) and returns it
 
-  const country = lookUpData.find((item) => {
-    return item.cca3 === v;
-  });
-  if (country) {
-    return country.name.common;
-  } else return null;
+  // const country = lookUpData.find((item) => {
+  //   return item.cca3 === v;
+  // });
+  if (lookUpData.has(countryItem)) {
+    return lookUpData.get(countryItem);
+  } else {
+    return null;
+  }
+  // if (country) {
+  //   return country.name.common;
+  // } else return null;
 };
 
 const showItem = (v) => {
@@ -69,28 +72,24 @@ const showItem = (v) => {
   dataDivDetailed.className = "data-div-detailed";
   // population
   let detailedPopulation = document.createElement("p");
-  detailedPopulation.className = "country-population-detailed";
   let detailedPopulationText = document.createTextNode(
     `Population: ${v.population || "Unknown"}`
   );
   detailedPopulation.appendChild(detailedPopulationText);
   // region
   let detailedRegion = document.createElement("p");
-  detailedRegion.className = "country-region-detailed";
   let detailedRegionText = document.createTextNode(
     `Region: ${v.region || "Unknown"}`
   );
   detailedRegion.appendChild(detailedRegionText);
   // capital
   let detailedCapital = document.createElement("p");
-  detailedCapital.className = "country-capital-detailed";
   let detailedCapitalText = document.createTextNode(
     `Capital: ${v.capital || "Unknown"}`
   );
   detailedCapital.appendChild(detailedCapitalText);
   // sub region
   let detailedSubRegion = document.createElement("p");
-  detailedSubRegion.className = "country-subregion-detailed";
   let detailedSubRegionText = document.createTextNode(
     `Sub Region: ${v.subregion || "Unknown"}`
   );
@@ -98,7 +97,6 @@ const showItem = (v) => {
   // native name
   let detailedNativeName = document.createElement("p");
   let detailedNativeNameString = "";
-  detailedNativeName.className = "country-nativename-detailed";
   for (const key in v.name.nativeName) {
     const element = v.name.nativeName[key];
     detailedNativeNameString += element.common + ", ";
@@ -116,7 +114,6 @@ const showItem = (v) => {
         topLevelDomainString += v + ", ";
       })
     : (topLevelDomainString = "Unknown");
-  detailedTopLevelDomain.className = "country-topleveldomain-detailed";
   let detailedTopLevelDomainText = document.createTextNode(
     `Top Level Domain: ${topLevelDomainString}`
   );
@@ -129,7 +126,6 @@ const showItem = (v) => {
     var val = v.currencies[key].name;
     currenciesString += val + ", ";
   }
-  detailedCurrencies.className = "country-currencies-detailed";
   let detailedCurrenciesText = document.createTextNode(
     `Currencies: ${currenciesString}`
   );
@@ -142,7 +138,6 @@ const showItem = (v) => {
     var val = v.languages[key];
     languagesString += val + ", ";
   }
-  detailedLanguages.className = "country-currencies-detailed";
   let detailedLanguagesText = document.createTextNode(
     `Languages: ${languagesString || "Unknown"}`
   );
