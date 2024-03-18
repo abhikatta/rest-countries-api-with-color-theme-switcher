@@ -51,7 +51,6 @@ nav {
   margin-top: 2rem;
   margin-bottom: 2rem;
   width: auto;
-  /* margin: 1rem 2rem 0rem; */
 }
 .input-search {
   width: 20rem;
@@ -96,7 +95,6 @@ nav {
   max-height: auto;
   background-color: var(--element-bg);
   color: hsl(200, 15%, 8%);
-  /* box-shadow: 5px 5px 10px rgb(208, 208, 208); */
 
   transition: 0.4s;
   cursor: pointer;
@@ -104,7 +102,6 @@ nav {
 }
 .item:hover {
   transform: scale(110%);
-  /* box-shadow: 5px 5px 40px rgb(208, 208, 208); */
 }
 
 .country-title {
@@ -131,8 +128,8 @@ nav {
 .option {
   padding: 0.7rem 2rem;
 }
+
 /* detailed view : */
-/* all have -detailed at end to original classnames */
 .item-detailed {
   display: flex;
   width: auto;
@@ -152,8 +149,6 @@ nav {
   cursor: pointer;
   width: max-content;
   margin: 1rem;
-  /* for aligning with the div */
-
   margin-left: 6rem;
   padding: 0.3rem 2rem;
 }
@@ -254,9 +249,6 @@ nav h1 {
     max-width: 18rem;
   }
   .countries-container {
-    /* display: flex;
-
-    flex-direction: row; */
     display: grid;
     grid-template-columns: repeat(3, 0.7fr);
     width: auto;
