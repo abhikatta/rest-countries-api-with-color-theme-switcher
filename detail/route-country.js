@@ -10,7 +10,7 @@ const nav = document.querySelector("nav");
 const darkModeButton = document.getElementById("darkmode-button");
 const itemContainerElement = document.getElementById("item-container");
 
-let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"));
+let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode")) || false;
 // let isDarkMode = false;
 const fetchLookUpData = async () => {
   try {
@@ -19,27 +19,17 @@ const fetchLookUpData = async () => {
     data.map((lookUpCountry) => {
       lookUpData.set(lookUpCountry.cca3, lookUpCountry.name.common);
     });
-    console.log(lookUpData);
   } catch (error) {
     console.log(`something went wrong while fetching lookup data:,${error}`);
   }
 };
 
 const borderCountryLookup = (countryItem) => {
-  // data in countries.json uses cca2, but borders has cca3 format
-  // so using the first 2 letters of v, this finds the object(i.e country) and returns it
-
-  // const country = lookUpData.find((item) => {
-  //   return item.cca3 === v;
-  // });
   if (lookUpData.has(countryItem)) {
     return lookUpData.get(countryItem);
   } else {
     return null;
   }
-  // if (country) {
-  //   return country.name.common;
-  // } else return null;
 };
 
 const showItem = (v) => {
@@ -166,12 +156,6 @@ const showItem = (v) => {
           borderCountryComponent.id = "border-country";
           borderCountryComponent.className = "border-country";
 
-          if (isDarkMode) {
-            borderCountryComponent.classList.add("darkMode-item");
-          } else if (!isDarkMode) {
-            borderCountryComponent.classList.remove("darkMode-item");
-          }
-
           let borderCountryText = document.createTextNode(
             detailedBorderCountriesString
           );
@@ -201,15 +185,9 @@ const showItem = (v) => {
   });
 
   if (isDarkMode) {
-    body.classList.add("darkMode-bg");
-    backButton.classList.add("darkMode-item");
-    nav.classList.add("darkMode-item");
-    darkModeButton.classList.add("darkMode-bg");
+    body.classList.add("darkMode");
   } else {
-    body.classList.remove("darkMode-bg");
-    backButton.classList.remove("darkMode-item");
-    nav.classList.remove("darkMode-item");
-    darkModeButton.classList.remove("darkMode-bg");
+    body.classList.remove("darkMode");
   }
   // appending elements according to layout:
   detailedDiv.append(backButton, mainDivDetailed);
@@ -246,14 +224,6 @@ const renderDetailedView = async () => {
     countryData.map((v) => showItem(v));
   } catch (error) {
     console.error(error);
-  }
-};
-
-const checkDarkmode = () => {
-  if (isDarkMode) {
-    body.classList.add("darkMode");
-  } else {
-    body.classList.remove("darkMode");
   }
 };
 

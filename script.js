@@ -95,7 +95,6 @@ const buildCountryComponents = (countries) => {
     return itemDiv;
   });
 };
-
 const renderCountryDetails = () => {
   const searchValue = searchElement.value;
   const filterValue = filterElement.value;
@@ -133,7 +132,9 @@ const renderCountryDetails = () => {
             .includes(searchValue.toLowerCase().trim())
       );
     } else {
-      newMapCountries = mapCountries;
+      newMapCountries = newMapCountries = mapCountries.filter((v) =>
+        v.region.toLowerCase().trim().includes(filterValue.toLowerCase().trim())
+      );
     }
     countryComponents = buildCountryComponents(newMapCountries);
   }

@@ -75,11 +75,11 @@ nav {
   color: var(--text-color);
 }
 .filter {
-  background-color: var(--background-body-color);
+  cursor: pointer;
+  background-color: var(--element-bg);
   color: var(--text-color);
 }
 ::placeholder {
-  opacity: 80%;
   padding-left: 1rem;
 }
 .main {
@@ -145,6 +145,7 @@ nav {
   height: auto;
   flex-direction: column;
   justify-content: center;
+  background-color: var(--background-body-color);
   align-items: self-start;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -152,8 +153,9 @@ nav {
 .back-button {
   background-color: var(--background-body-color);
   border: none;
+  color: var(--text-color);
   box-shadow: rgb(208, 208, 208) 1px 1px 1000px;
-
+  cursor: pointer;
   width: max-content;
   margin: 1rem;
   /* for aligning with the div */
@@ -188,17 +190,6 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
-
-/* .darkMode-item {
-  background-color: var(--dark-blue);
-  box-shadow: none;
-  color: var(--white);
-}
-.darkMode-bg {
-  background-color: var(--very-dark-blue-bg);
-  box-shadow: none;
-  color: var(--white);
-} */
 .border-countries-container {
   display: flex;
   flex-direction: row;
@@ -227,7 +218,9 @@ nav {
   justify-content: space-around;
   max-width: auto;
 }
-
+nav h1 {
+  cursor: pointer;
+}
 /* mobile: */
 @media (max-width: 768px) {
   body {
