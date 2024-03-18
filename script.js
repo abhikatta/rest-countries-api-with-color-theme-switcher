@@ -39,29 +39,29 @@ const fetchData = async () => {
 };
 
 const buildCountryComponents = (countries) => {
-  return countries.map((v, i) => {
+  return countries.map((country) => {
     // main div
     let itemDiv = document.createElement("div");
     itemDiv.className = "item";
     itemDiv.id = "item";
-    itemDiv.addEventListener("click", () => showItem(v));
+    itemDiv.addEventListener("click", () => showItem(country));
 
     // flag
     let flag = document.createElement("img");
-    flag.src = v.flags.png;
-    flag.alt = v.flags.alt;
+    flag.src = country.flags.png;
+    flag.alt = country.flags.alt;
 
     // title
     let title = document.createElement("p");
     title.className = "country-title";
-    let titleText = document.createTextNode(v.name.common);
+    let titleText = document.createTextNode(country.name.common);
     title.appendChild(titleText);
 
     // population
     let population = document.createElement("p");
     population.className = "country-population";
     let populationText = document.createTextNode(
-      `Population: ${v.population || "Unknown"}`
+      `Population: ${country.population || "Unknown"}`
     );
     population.appendChild(populationText);
 
@@ -69,7 +69,7 @@ const buildCountryComponents = (countries) => {
     let region = document.createElement("p");
     region.className = "country-region";
     let regionText = document.createTextNode(
-      `Region: ${v.region || "Unknown"}`
+      `Region: ${country.region || "Unknown"}`
     );
     region.appendChild(regionText);
 
@@ -77,7 +77,7 @@ const buildCountryComponents = (countries) => {
     let capital = document.createElement("p");
     capital.className = "country-capital";
     let capitalText = document.createTextNode(
-      `Capital: ${v.capital || "Unknown"}`
+      `Capital: ${country.capital || "Unknown"}`
     );
     capital.appendChild(capitalText);
 
@@ -109,8 +109,8 @@ const renderCountryDetails = () => {
     countryComponents = buildCountryComponents(mapCountries);
   }
   if (searchValue) {
-    let newMapCountries = mapCountries.filter((v) =>
-      v.name.common
+    let newMapCountries = mapCountries.filter((mapCountry) =>
+      mapCountry.name.common
         .toLowerCase()
         .trim()
         .includes(searchValue.toLowerCase().trim())
@@ -121,26 +121,29 @@ const renderCountryDetails = () => {
     let newMapCountries;
     if (searchValue) {
       newMapCountries = mapCountries.filter(
-        (v) =>
-          v.region
+        (mapCountry) =>
+          mapCountry.region
             .toLowerCase()
             .trim()
             .includes(filterValue.toLowerCase().trim()) &&
-          v.name.common
+          mapCountry.name.common
             .toLowerCase()
             .trim()
             .includes(searchValue.toLowerCase().trim())
       );
     } else {
-      newMapCountries = newMapCountries = mapCountries.filter((v) =>
-        v.region.toLowerCase().trim().includes(filterValue.toLowerCase().trim())
+      newMapCountries = newMapCountries = mapCountries.filter((mapCountry) =>
+        mapCountry.region
+          .toLowerCase()
+          .trim()
+          .includes(filterValue.toLowerCase().trim())
       );
     }
     countryComponents = buildCountryComponents(newMapCountries);
   }
   // appending each country component to item container
-  countryComponents.map((v) => {
-    itemContainerElement.append(v);
+  countryComponents.map((country) => {
+    itemContainerElement.append(country);
   });
 };
 
@@ -164,8 +167,8 @@ const darkMode = () => {
 const search = () => {
   const searchValue = searchElement.value;
   mapCountries = countriesData;
-  mapCountries = mapCountries.filter((v) =>
-    v.name.common
+  mapCountries = mapCountries.filter((mapCountry) =>
+    mapCountry.name.common
       .toLowerCase()
       .trim()
       .includes(searchValue.toLowerCase().trim())
@@ -177,19 +180,17 @@ const search = () => {
 const filter = () => {
   const filterValue = filterElement.value;
   mapCountries = countriesData;
-  mapCountries = mapCountries.filter((v) => {
-    return v.region.toLowerCase().trim().includes(filterValue.toLowerCase());
+  mapCountries = mapCountries.filter((mapCountry) => {
+    return mapCountry.region
+      .toLowerCase()
+      .trim()
+      .includes(filterValue.toLowerCase());
   });
 
   renderCountryDetails();
 };
 
-// event listeners:
-// window.addEventListener("load", renderCountryDetails);
-
 window.addEventListener("load", () => {
-  // check the dark mode value and add or remove the darkmode classes respectively
-  // do this in the morning
   renderCountryDetails();
   checkDarkmode();
 });

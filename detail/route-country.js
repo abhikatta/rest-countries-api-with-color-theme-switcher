@@ -32,7 +32,7 @@ const borderCountryLookup = (countryItem) => {
   }
 };
 
-const showItem = (v) => {
+const showCountry = (country) => {
   //   main div:
   //   the first vertical row:
   let detailedDiv = document.createElement("div");
@@ -50,12 +50,12 @@ const showItem = (v) => {
   // flag
   let detailedFlag = document.createElement("img");
   detailedFlag.className = "flag-detailed";
-  detailedFlag.src = v.flags.png;
-  detailedFlag.alt = v.flags.alt;
+  detailedFlag.src = country.flags.png;
+  detailedFlag.alt = country.flags.alt;
   // title
   let detailedTitle = document.createElement("p");
   detailedTitle.className = "country-title-detailed";
-  let detailedTitleText = document.createTextNode(v.name.common);
+  let detailedTitleText = document.createTextNode(country.name.common);
   detailedTitle.appendChild(detailedTitleText);
   // grid of 2 columns and 4 rows holding data
   let dataDivDetailed = document.createElement("div");
@@ -63,32 +63,32 @@ const showItem = (v) => {
   // population
   let detailedPopulation = document.createElement("p");
   let detailedPopulationText = document.createTextNode(
-    `Population: ${v.population || "Unknown"}`
+    `Population: ${country.population || "Unknown"}`
   );
   detailedPopulation.appendChild(detailedPopulationText);
   // region
   let detailedRegion = document.createElement("p");
   let detailedRegionText = document.createTextNode(
-    `Region: ${v.region || "Unknown"}`
+    `Region: ${country.region || "Unknown"}`
   );
   detailedRegion.appendChild(detailedRegionText);
   // capital
   let detailedCapital = document.createElement("p");
   let detailedCapitalText = document.createTextNode(
-    `Capital: ${v.capital || "Unknown"}`
+    `Capital: ${country.capital || "Unknown"}`
   );
   detailedCapital.appendChild(detailedCapitalText);
   // sub region
   let detailedSubRegion = document.createElement("p");
   let detailedSubRegionText = document.createTextNode(
-    `Sub Region: ${v.subregion || "Unknown"}`
+    `Sub Region: ${country.subregion || "Unknown"}`
   );
   detailedSubRegion.appendChild(detailedSubRegionText);
   // native name
   let detailedNativeName = document.createElement("p");
   let detailedNativeNameString = "";
-  for (const key in v.name.nativeName) {
-    const element = v.name.nativeName[key];
+  for (const key in country.name.nativeName) {
+    const element = country.name.nativeName[key];
     detailedNativeNameString += element.common + ", ";
   }
 
@@ -99,9 +99,9 @@ const showItem = (v) => {
   // top level domain
   let detailedTopLevelDomain = document.createElement("p");
   let topLevelDomainString = "";
-  v.tld
-    ? v.tld.map((v) => {
-        topLevelDomainString += v + ", ";
+  country.tld
+    ? country.tld.map((countryTLD) => {
+        topLevelDomainString += countryTLD + ", ";
       })
     : (topLevelDomainString = "Unknown");
   let detailedTopLevelDomainText = document.createTextNode(
@@ -112,8 +112,8 @@ const showItem = (v) => {
   let detailedCurrencies = document.createElement("p");
   let currenciesString = "";
 
-  for (var key in v.currencies) {
-    var val = v.currencies[key].name;
+  for (var key in country.currencies) {
+    var val = country.currencies[key].name;
     currenciesString += val + ", ";
   }
   let detailedCurrenciesText = document.createTextNode(
@@ -124,8 +124,8 @@ const showItem = (v) => {
   // languages
   let detailedLanguages = document.createElement("p");
   let languagesString = "";
-  for (var key in v.languages) {
-    var val = v.languages[key];
+  for (var key in country.languages) {
+    var val = country.languages[key];
     languagesString += val + ", ";
   }
   let detailedLanguagesText = document.createTextNode(
@@ -148,8 +148,8 @@ const showItem = (v) => {
   // appending them to the container
   let detailedBorderCountries = document.createElement("div");
   detailedBorderCountries.className = "countries-container";
-  v.borders
-    ? v.borders.map((border) => {
+  country.borders
+    ? country.borders.map((border) => {
         let detailedBorderCountriesString = borderCountryLookup(border);
         if (detailedBorderCountriesString !== null) {
           let borderCountryComponent = document.createElement("p");
@@ -221,9 +221,10 @@ const fetchCountryData = async () => {
 const renderDetailedView = async () => {
   try {
     await fetchCountryData();
-    countryData.map((v) => showItem(v));
+    countryData.map((country) => showCountry(country));
   } catch (error) {
     console.error(error);
+    itemContainerElement.textContent = error;
   }
 };
 
